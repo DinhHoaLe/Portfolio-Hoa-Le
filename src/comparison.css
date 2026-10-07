@@ -1,0 +1,8 @@
+.comparison-switcher { position: fixed; bottom: 18px; right: 24px; z-index: 1000; display: flex; gap: 4px; padding: 5px; background: var(--dp-surface); border: 1px solid var(--dp-line); border-radius: 100px; box-shadow: 0 4px 20px #0002; font: 12px/1.4 system-ui, sans-serif; }
+.comparison-switcher button { display: flex; align-items: center; gap: 8px; padding: 9px 14px; border: 0; border-radius: 100px; background: transparent; color: var(--dp-text); white-space: nowrap; }
+.comparison-switcher button[aria-pressed="true"] { background: var(--dp-fg); color: var(--dp-bg); }
+.comparison-switcher button:hover { outline: 1px solid var(--dp-muted); }
+.theme-dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid #888; }
+.theme-dot-light { background: #fff; }
+.theme-dot-dark { background: #111; }
+@media(max-width:700px) { .comparison-switcher { right: 16px; bottom: 12px; } }

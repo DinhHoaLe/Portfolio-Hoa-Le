@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 72" fill="none">
+  <title>HL — Engineering &amp; Code</title>
+  <g stroke="#101418" stroke-linejoin="miter">
+    <path d="M13 5H74L83 14V57L73 67H5V13Z" stroke-width="1.5"/>
+    <path d="M5 23V13L13 5H25M64 67H73L83 57V47" stroke-width="3"/>
+    <path d="M23 22V50M43 22V50M23 36H43M57 22V50H71" stroke-width="6"/>
+    <path d="M17 17H75M17 55H75" stroke-width=".65" opacity=".25"/>
+    <path d="M19 13V59M47 13V59M53 13V59" stroke-width=".65" stroke-dasharray="2 3" opacity=".2"/>
+    <path d="M9 36H14M76 36H81" stroke-width="1"/>
+  </g>
+  <g fill="#101418">
+    <rect x="23" y="8" width="14" height="2"/>
+    <rect x="40" y="8" width="3" height="2"/>
+    <rect x="54" y="62" width="14" height="2"/>
+    <rect x="49" y="62" width="3" height="2"/>
+  </g>
+</svg>
