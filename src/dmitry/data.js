@@ -1,5 +1,5 @@
 import { projects, experience, education, skills } from '../profile.js';
-export const groups = ['BIM / MEP Projects','BIM Automation','Web Development'].map(category=>[category,projects.filter(p=>p.category===category).map(p=>[p.title,p.description,p.id,p.image,p.tools,p.context,p.projectType])]);
+export const groups = ['Revit Projects','Point Cloud / AutoCAD Plant 3D','BIM Automation','Web Development'].map(category=>[category,projects.filter(p=>!p.hideFromListing && (p.modelWorkflow===category || p.category===category)).map(p=>[p.title,p.description,p.id,p.image,p.tools,p.context,p.projectType])]);
 export const journey = [
   ...experience.map(([date,role,org,context,details])=>[org,role,date,details.join(' '),context]),
   ...education.map(([date,title,org,award])=>[org,title,date,award || 'Education and training listed in the CV.','Education & training']),

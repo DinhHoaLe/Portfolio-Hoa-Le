@@ -84,7 +84,7 @@ const webProjects = [
   ['Cinema Booking Website','Cinema booking web development project.'],
 ];
 const aecProjects = [
-  ['Munich Airport — Terminal 1 Expansion','DCMvn',15],['ZAM München','DCMvn',16],['Überseequartier — Residential Quarter','DCMvn',18],['Konzerthaus München — Concert Hall','DCMvn',19],['Munich Re','DCMvn',22],['EKB — Point Cloud / AutoCAD Plant 3D','DCMvn',23],
+  ['Munich Airport — Terminal 1 Expansion','DCMvn',15],['ZAM München','DCMvn',16],['Überseequartier — Residential Quarter','DCMvn',18],['Konzerthaus München — Concert Hall','DCMvn',19],['Munich Re','DCMvn',22],['ABP MKK Bad Oeynhausen','DCMvn',33],['TuV Arena','DCMvn',42],['IBDH_SQ_FM','DCMvn',43],['Vienna Airport — FLUGHAFEN WIEN AKTIENGESELLSCHAFT','DCMvn',44],['EKB — Point Cloud / AutoCAD Plant 3D','DCMvn',23],
 ];
 export const projects = [
   ...bimProjects.map(([title,description])=>({title,description,tools:bimTools,category:'BIM Automation',context:'Selected software project in the CV.'})),
@@ -105,14 +105,174 @@ export const projects = [
     16: '/profile/edited/zam-muenchen-model.png',
     18: '/profile/edited/ueberseequartier-model.png',
     19: '/profile/edited/mep-model-white.png',
+    22: '/profile/edited/munich-re-model-white.png',
+    23: '/profile/edited/ekb-white.png',
     28: '/profile/edited/dormitory-england-model.png',
     29: '/profile/edited/manor-central-park-4-ct1-model.png',
     30: '/profile/edited/manor-central-park-16-ct2-model.png',
     31: '/profile/edited/manor-central-park-5-ct1-model.png',
     32: '/profile/edited/gladstone-loretta-model.png',
+    33: '/profile/edited/abp-mkk-bad-oeynhausen-white.png',
+    42: '/profile/edited/tuv-arena-model.png',
+    43: '/profile/edited/ibdh-sq-fm-model-clean.png',
+    44: '/profile/edited/vienna-airport-model-clean.png',
   }[projectNumber];
-  return {...p, ...(detail ? {title:detail.title, description:detail.description, tools:detail.tools} : {}), id, number:String(projectNumber).padStart(2,'0'), image:modelImage || `/profile/project-${projectNumber}.svg`, modelImage, stats:p.category};
+  return {...p, ...(detail ? {title:detail.title, description:detail.description, tools:detail.tools} : {}), id, number:String(projectNumber).padStart(2,'0'), image:modelImage || `/profile/project-${projectNumber}.svg`, modelImage, modelGallery:projectNumber===23 ? [{name:'VT8',image:modelImage},{name:'AGF',image:'/profile/edited/ekb-agf-white.png'}] : undefined, stats:p.category};
 });
+// Revit add-in projects supplied in the folder screenshot.
+for (const id of ['hoa-project-1','hoa-project-3']) {
+  const index = projects.findIndex(project=>project.id===id);
+  if (index >= 0) projects.splice(index,1);
+}
+projects.splice(0,0,...[
+  {
+    "id": "hoa-project-34",
+    "number": "34",
+    "title": "MEP Tool — Check Data from Family",
+    "description": "Review data from Revit families.",
+    "folderName": "MEP_Check_Data_From_Family_ver1",
+    "tools": [
+      "C#",
+      ".NET",
+      "Revit API"
+    ],
+    "category": "BIM Automation",
+    "context": "MEP tool collection",
+    "image": "/profile/project-34.svg",
+    "stats": "BIM Automation"
+  },
+  {
+    "id": "hoa-project-35",
+    "number": "35",
+    "title": "MEP Tool — Check Healthy Project",
+    "description": "Check the health of a Revit project.",
+    "folderName": "MEP_Check_Healthy_Project_ver1",
+    "tools": [
+      "C#",
+      ".NET",
+      "Revit API"
+    ],
+    "category": "BIM Automation",
+    "context": "MEP tool collection",
+    "image": "/profile/project-35.svg",
+    "stats": "BIM Automation"
+  },
+  {
+    "id": "hoa-project-36",
+    "number": "36",
+    "title": "MEP Tool — Create Cable Tray from CAD",
+    "description": "Create Revit cable trays from CAD input.",
+    "folderName": "MEP_Create_CableTray_From_CAD_ver1",
+    "tools": [
+      "C#",
+      ".NET",
+      "Revit API"
+    ],
+    "category": "BIM Automation",
+    "context": "MEP tool collection",
+    "image": "/profile/project-36.svg",
+    "stats": "BIM Automation"
+  },
+  {
+    "id": "hoa-project-37",
+    "number": "37",
+    "title": "MEP Tool — Create Duct from CAD",
+    "description": "Create Revit ducts from CAD input.",
+    "folderName": "MEP_Create_Duct_From_CAD_ver1",
+    "tools": [
+      "C#",
+      ".NET",
+      "Revit API"
+    ],
+    "category": "BIM Automation",
+    "context": "MEP tool collection",
+    "image": "/profile/project-37.svg",
+    "stats": "BIM Automation"
+  },
+  {
+    "id": "hoa-project-38",
+    "number": "38",
+    "title": "MEP Tool — Create Duct from IFC",
+    "description": "Create Revit ducts from IFC input.",
+    "folderName": "MEP_Create_Duct_From_IFC_ver1",
+    "tools": [
+      "C#",
+      ".NET",
+      "Revit API"
+    ],
+    "category": "BIM Automation",
+    "context": "MEP tool collection",
+    "image": "/profile/project-38.svg",
+    "stats": "BIM Automation"
+  },
+  {
+    "id": "hoa-project-39",
+    "number": "39",
+    "title": "MEP Tool — Export Data from Family",
+    "description": "Export data from Revit families.",
+    "folderName": "MEP_Export_Data_From_Family_ver1",
+    "tools": [
+      "C#",
+      ".NET",
+      "Revit API"
+    ],
+    "category": "BIM Automation",
+    "context": "MEP tool collection",
+    "image": "/profile/project-39.svg",
+    "stats": "BIM Automation"
+  },
+  {
+    "id": "hoa-project-40",
+    "number": "40",
+    "title": "MEP Tool — Place Element from CAD",
+    "description": "Place Revit elements from CAD input.",
+    "folderName": "MEP_Place_Element_From_CAD_ver1",
+    "tools": [
+      "C#",
+      ".NET",
+      "Revit API"
+    ],
+    "category": "BIM Automation",
+    "context": "MEP tool collection",
+    "image": "/profile/project-40.svg",
+    "stats": "BIM Automation"
+  },
+  {
+    "id": "hoa-project-41",
+    "number": "41",
+    "title": "MEP Tool — Sheet Manager",
+    "description": "Manage sheets in a Revit project.",
+    "folderName": "MEP_Sheet_Manager_ver1",
+    "tools": [
+      "C#",
+      ".NET",
+      "Revit API"
+    ],
+    "category": "BIM Automation",
+    "context": "MEP tool collection",
+    "image": "/profile/project-41.svg",
+    "stats": "BIM Automation"
+  }
+]);
+
+// EKB areas have individual portfolio entries while retaining the project overview.
+const ekbParent = projects.find(project=>project.id==='hoa-project-23');
+const ekbAreas = [
+  {id:'ekb-vt8',siteName:'VT8',number:'23.1',modelImage:'/profile/edited/ekb-white.png'},
+  {id:'ekb-agf',siteName:'AGF',number:'23.2',modelImage:'/profile/edited/ekb-agf-white.png'},
+  {id:'ekb-vt16',siteName:'VT16',number:'23.3',modelImage:'/profile/edited/ekb-vt16-white.png'},
+].map(area=>({...ekbParent,...area,parentId:ekbParent.id,title:`EKB · ${area.siteName}`,description:`${area.siteName} site model within the EKB Point Cloud / AutoCAD Plant 3D project.`,image:area.modelImage,modelGallery:[{name:area.siteName,image:area.modelImage}],tools:['AutoCAD Plant 3D','Point Cloud']}));
+projects.splice(projects.indexOf(ekbParent)+1,0,...ekbAreas);
+
+// Model workflows distinguish Revit production from point-cloud / Plant 3D work.
+for (const project of projects) {
+  if (project.category !== 'BIM / MEP Projects') continue;
+  project.modelWorkflow = project.id.startsWith('ekb-') || project.id === 'hoa-project-23'
+    ? 'Point Cloud / AutoCAD Plant 3D' : 'Revit Projects';
+  if (project.modelWorkflow === 'Point Cloud / AutoCAD Plant 3D') project.tools = ['AutoCAD Plant 3D', 'Point Cloud'];
+}
+// Keep the EKB overview address available; show its VT8 site only once in listings.
+ekbParent.hideFromListing = true;
 export const links = [
   ['phone','tel:+84985671678',profile.phone],['email',`mailto:${profile.email}`,profile.email],
   ['GitHub',profile.github,'↗'],['GitLab',profile.gitlab,'↗'],['CV',profile.resume,'↓'],
@@ -123,3 +283,6 @@ export const links = [
   ['BIMcollab Certificate','https://drive.google.com/file/d/1YnyerbfYISks-oCbvIvIkdtmboof_mv1/view?usp=drive_link','↗'],
 ];
 export const references = [['DCMvn','https://dcmvn.com/'],['CADIAN','https://cadian.vn/'],['ARMO','https://acteng.com.vn/']];
+
+
+

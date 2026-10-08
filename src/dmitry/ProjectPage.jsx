@@ -8,6 +8,8 @@ export default function ProjectPage() {
   const index = projects.findIndex(p => p.id === id);
   if (!projects[index]) return <main className="dp-detail-missing"><h1>Project not found</h1><a href="/dmitry#dp-projects">Back to projects →</a></main>;
   const project = getProjectDetail(projects[index]);
+  const areas = projects.filter(item=>item.parentId===project.id);
+  const parent = projects.find(item=>item.id===project.parentId);
   const previous = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
   return <div className="dp-site dp-detail">
@@ -19,8 +21,9 @@ export default function ProjectPage() {
         <div className="dp-detail-nav"><a href="/dmitry#dp-projects">⟵ Back</a><a href="/dmitry?projects=all#dp-projects">To all projects ⟶</a></div>
         <div className="dp-detail-title"><div className="dp-tags">{project.tools.map(tool => <span key={tool}>{tool}</span>)}</div><h1>{project.title}<span>/</span></h1><p>{project.category} · {project.number}</p></div>
       </section>
-      <div className="dp-detail-body">
-        {project.modelImage && <section><h2>Project Model<span>/</span></h2><img className="dp-project-model-image" src={project.modelImage} alt={`${project.title} — coordinated MEP model`} loading="lazy"/></section>}
+      <div className="dp-detail-body">{parent && <a className="dp-area-parent" href={`/dmitry/projects/${parent.id}`}>⟵ EKB project overview</a>}
+        {areas.length > 0 && <section><h2>Project Areas<span>/</span></h2><p>Explore the individual site models within EKB.</p><div className="dp-area-grid">{areas.map(area=><a key={area.id} href={`/dmitry/projects/${area.id}`}><img src={area.image} alt={`EKB — ${area.siteName} site model`}/><div><span>EKB · SITE AREA</span><h3>{area.siteName}</h3><p>{area.description}</p><b>Explore area ↗</b></div></a>)}</div></section>}
+        {project.modelImage && areas.length===0 && <section><h2>Project Model<span>/</span></h2>{(project.modelGallery || [{name:null,image:project.modelImage}]).map(({name,image})=><figure className="dp-site-model" key={image}>{name && <h3>{name}</h3>}<img className="dp-project-model-image" src={image} alt={`${project.title}${name ? ' — '+name : ''} — coordinated MEP model`} loading="lazy"/>{name && <figcaption>EKB · {name} · Site model overview</figcaption>}</figure>)}</section>}
         <section><h2>Project Overview<span>/</span></h2><p>{project.description}</p><div className="dp-detail-facts">{[['Discipline',project.category],['Client / Context',project.customer],['My Role',project.role],['Period',project.period],['Team Size',project.team]].filter(([,value])=>value).map(([label,value])=><div key={label}><span>{label}</span><p>{value}</p></div>)}</div>{project.scopeNote && <p className="dp-detail-note">{project.scopeNote}</p>}</section>
         {project.sections.length > 0 && <section><h2>My Responsibilities<span>/</span></h2><div className="dp-project-responsibilities">{project.sections.map(([title,tasks])=><article key={title}><h3>{title}</h3><ul>{tasks.map(task=><li key={task}>{task}</li>)}</ul></article>)}</div></section>}
         {project.tools.length > 0 && <section><h2>Tools & Technologies<span>/</span></h2><div className="dp-tags dp-role-tags">{project.tools.map(tool => <span key={tool}>{tool}</span>)}</div></section>}
@@ -32,4 +35,5 @@ export default function ProjectPage() {
 
   </div>;
 }
+
 

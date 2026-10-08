@@ -9,6 +9,118 @@ const webResponsibilities = [
 const personal = { customer:'Personal', period:'2025', role:'Developer', team:'1 developer' };
 const fullstack = { role:'Full-Stack Developer', team:'3 members' };
 export const projectDetails = {
+  'hoa-project-34': {
+  "title": "MEP Tool — Check Data from Family",
+  "description": "Review data from Revit families.",
+  "customer": "MEP tool collection",
+  "role": "Revit Add-in Developer",
+  "tools": [
+    "C#",
+    ".NET",
+    "Revit API"
+  ],
+  "scopeNote": "Project folder: MEP_Check_Data_From_Family_ver1",
+  "sections": [],
+  "links": []
+},
+  'hoa-project-35': {
+  "title": "MEP Tool — Check Healthy Project",
+  "description": "Check the health of a Revit project.",
+  "customer": "MEP tool collection",
+  "role": "Revit Add-in Developer",
+  "tools": [
+    "C#",
+    ".NET",
+    "Revit API"
+  ],
+  "scopeNote": "Project folder: MEP_Check_Healthy_Project_ver1",
+  "sections": [],
+  "links": []
+},
+  'hoa-project-36': {
+  "title": "MEP Tool — Create Cable Tray from CAD",
+  "description": "Create Revit cable trays from CAD input.",
+  "customer": "MEP tool collection",
+  "role": "Revit Add-in Developer",
+  "tools": [
+    "C#",
+    ".NET",
+    "Revit API"
+  ],
+  "scopeNote": "Project folder: MEP_Create_CableTray_From_CAD_ver1",
+  "sections": [],
+  "links": []
+},
+  'hoa-project-37': {
+  "title": "MEP Tool — Create Duct from CAD",
+  "description": "Create Revit ducts from CAD input.",
+  "customer": "MEP tool collection",
+  "role": "Revit Add-in Developer",
+  "tools": [
+    "C#",
+    ".NET",
+    "Revit API"
+  ],
+  "scopeNote": "Project folder: MEP_Create_Duct_From_CAD_ver1",
+  "sections": [],
+  "links": []
+},
+  'hoa-project-38': {
+  "title": "MEP Tool — Create Duct from IFC",
+  "description": "Create Revit ducts from IFC input.",
+  "customer": "MEP tool collection",
+  "role": "Revit Add-in Developer",
+  "tools": [
+    "C#",
+    ".NET",
+    "Revit API"
+  ],
+  "scopeNote": "Project folder: MEP_Create_Duct_From_IFC_ver1",
+  "sections": [],
+  "links": []
+},
+  'hoa-project-39': {
+  "title": "MEP Tool — Export Data from Family",
+  "description": "Export data from Revit families.",
+  "customer": "MEP tool collection",
+  "role": "Revit Add-in Developer",
+  "tools": [
+    "C#",
+    ".NET",
+    "Revit API"
+  ],
+  "scopeNote": "Project folder: MEP_Export_Data_From_Family_ver1",
+  "sections": [],
+  "links": []
+},
+  'hoa-project-40': {
+  "title": "MEP Tool — Place Element from CAD",
+  "description": "Place Revit elements from CAD input.",
+  "customer": "MEP tool collection",
+  "role": "Revit Add-in Developer",
+  "tools": [
+    "C#",
+    ".NET",
+    "Revit API"
+  ],
+  "scopeNote": "Project folder: MEP_Place_Element_From_CAD_ver1",
+  "sections": [],
+  "links": []
+},
+  'hoa-project-41': {
+  "title": "MEP Tool — Sheet Manager",
+  "description": "Manage sheets in a Revit project.",
+  "customer": "MEP tool collection",
+  "role": "Revit Add-in Developer",
+  "tools": [
+    "C#",
+    ".NET",
+    "Revit API"
+  ],
+  "scopeNote": "Project folder: MEP_Sheet_Manager_ver1",
+  "sections": [],
+  "links": []
+},
   'hoa-project-1': {
     ...personal, title:'MEP Tool — Set Params',
     description:'A data synchronization tool for updating parameters across thousands of BIM elements using external data sources.',
@@ -145,12 +257,12 @@ export function getProjectDetail(project) {
   if (detail) return { ...project, ...detail };
   const isCadian = project.context.startsWith('CADIAN');
   const isArmo = project.context.startsWith('ARMO');
-  const isPointCloud = project.title.startsWith('EKB');
+  const isPointCloud = project.modelWorkflow === 'Point Cloud / AutoCAD Plant 3D';
   const company = project.context;
   return {
     ...project, customer:company,
     role:isCadian ? 'CAD Operator' : isArmo ? 'Electrical Engineer' : 'MEPF Modeler',
-    description:`Project experience on ${project.title} at ${company}.`,
+    description:project.parentId ? project.description : `Project experience on ${project.title} at ${company}.`,
     tools:isCadian ? ['AutoCAD'] : isArmo ? ['Revit', 'MEP Coordination'] : isPointCloud ? ['AutoCAD Plant 3D', 'Point Cloud'] : ['Revit', 'AutoCAD', 'Revizto', 'Navisworks', 'BIMcollab'],
     scopeNote:'The project list identifies this assignment; the responsibilities below describe the corresponding company role.',
     sections:[[isCadian ? 'CAD & Electrical Documentation' : isArmo ? 'Electrical Engineering & Coordination' : isPointCloud ? 'Point Cloud & As-Built Modeling' : 'BIM / MEPF Modeling & Coordination',

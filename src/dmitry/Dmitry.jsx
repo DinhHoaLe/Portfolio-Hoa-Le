@@ -8,10 +8,10 @@ function Heading({ title, label, action }) {
   return <div className="dp-section-head"><h2>{title}<span>/</span></h2><div className="dp-section-meta"><span>—— {label} ——</span>{action}</div></div>;
 }
 
-const projectGroupNames = ['BIM / MEP Projects', 'Revit Add-ins', 'Web & Applications'];
+const projectGroupNames = ['Revit Projects', 'Point Cloud / AutoCAD Plant 3D', 'Revit Add-ins', 'Web & Applications'];
 
 function projectSections(items, index) {
-  return groups[index][0] === 'BIM / MEP Projects'
+  return groups[index][0] === 'Revit Projects'
     ? [['DCMvn Projects', items.filter(project=>project[6]==='DCMvn')], ['Outsource Projects', items.filter(project=>project[6]==='Outsource')]]
     : [[null, items]];
 }
