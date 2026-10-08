@@ -94,3 +94,33 @@
   .dp-trophy { display:none; }
   .dp-tool-group > div { grid-template-columns:repeat(auto-fill,minmax(70px,1fr)); gap:22px 10px; }
 }
+
+/* The user's original symbol sheet is displayed through clipped regions. */
+.dp-addin-symbol { position:relative; overflow:hidden; width:100%; aspect-ratio:420 / 240; background:#faf8f5; }
+.dp-addin-symbol > img { position:absolute; width:344.761905%; max-width:none; height:auto; object-fit:fill; filter:none; }
+.dp-addin-hero { background:#faf8f5; color:#17191c; min-height:900px; }
+.dp-addin-hero::after { background:none; }
+.dp-addin-hero .dp-addin-hero-art { position:absolute; top:150px; left:50%; transform:translateX(-50%); width:min(600px,85%); }
+.dp-addin-hero .dp-detail-title h1 span { color:#59616b; }
+.dp-addin-hero .dp-detail-title .dp-tags span { color:#383e46; border-color:#9ca3ac; }
+@media(max-width:700px) { .dp-addin-hero { min-height:800px; } .dp-addin-hero .dp-addin-hero-art { top:150px; } }
+
+/* All four selected-work tabs share the same card height and layout. */
+.dp-project-shelf { height:clamp(520px,50vw,600px); min-height:520px; }
+.dp-project-shelf .dp-project-panel { gap:14px; padding:0 14px; min-height:0; grid-template-rows:minmax(0,1fr); }
+.dp-project-tile.dp-selected-card { display:flex; flex-direction:column; height:100%; min-height:0; margin:0; background:var(--dp-surface); border:1px solid var(--dp-line); border-radius:12px; }
+.dp-selected-media { display:flex; align-items:center; justify-content:center; flex:0 0 54%; min-height:0; overflow:hidden; background:#faf8f5; }
+.dp-selected-media > img { width:100%; height:100%; object-fit:contain; }
+.dp-selected-media > .dp-addin-symbol { width:calc(100% - 24px); border-radius:8px; }
+.dp-selected-card .dp-project-caption { position:static; display:flex; flex:1; flex-direction:column; min-height:0; padding:20px 16px; background:none; opacity:1; color:var(--dp-fg); }
+.dp-selected-card .dp-project-caption h3 { font-size:18px; line-height:1.4; margin:0 0 12px; overflow-wrap:break-word; }
+.dp-selected-card .dp-project-caption p { color:var(--dp-muted); font-size:13px; line-height:1.6; margin:0 0 18px; }
+.dp-selected-card .dp-project-caption > span { margin-top:auto; color:var(--dp-fg); }
+.dp-selected-card:hover, .dp-selected-card:focus-visible { border-color:var(--dp-muted); }
+@media(max-width:700px) {
+  .dp-project-shelf { height:auto; min-height:0; }
+  .dp-project-shelf .dp-project-panel { padding:0; gap:18px; grid-template-rows:none; }
+  .dp-project-tile.dp-selected-card { height:480px; }
+  .dp-selected-media > .dp-addin-symbol { max-width:360px; }
+  .dp-selected-card .dp-project-caption { padding:20px 22px; }
+}

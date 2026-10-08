@@ -3,6 +3,7 @@ import { services, groups, values, toolGroups, toolColors } from './data';
 import { roles } from './roles';
 import { profile, links, references, education, highlights } from '../profile';
 import EngineeringDiagram from './EngineeringDiagram';
+import ProjectArtwork from './ProjectArtwork';
 
 function Heading({ title, label, action }) {
   return <div className="dp-section-head"><h2>{title}<span>/</span></h2><div className="dp-section-meta"><span>—— {label} ——</span>{action}</div></div>;
@@ -17,12 +18,13 @@ function projectSections(items, index) {
 }
 
 function SelectedProjects({items,index}) {
-  return projectSections(items,index).map(([title,projects])=><React.Fragment key={title || 'projects'}>
-    {title && <h4 className="dp-project-subheading">{title}</h4>}
-    {projects.slice(0,3).map(project=><a className="dp-project-tile" key={project[2]} href={`/dmitry/projects/${project[2]}`} aria-label={`Open ${project[0]}`}><img src={project[3]} alt={project[0]} loading="lazy"/><div className="dp-project-caption"><h3>{project[0]}</h3><p>{project[1]}</p><span>Explore project ↗</span></div></a>)}
-  </React.Fragment>);
+  const selected = groups[index][0] === 'Revit Projects'
+    ? items.filter(project=>project[6]==='DCMvn') : items;
+  return selected.slice(0,3).map(project=><a className="dp-project-tile dp-selected-card" key={project[2]} href={`/dmitry/projects/${project[2]}`} aria-label={`Open ${project[0]}`}>
+    <div className="dp-selected-media"><ProjectArtwork projectId={project[2]} src={project[3]} alt={project[0]}/></div>
+    <div className="dp-project-caption"><h3>{project[0]}</h3><p>{project[1]}</p><span>Explore project ↗</span></div>
+  </a>);
 }
-
 function AllProjects() {
   return <div className="dp-project-directory">
     <nav className="dp-project-group-links" aria-label="All project categories">{groups.map(([,items],i)=><a key={projectGroupNames[i]} href={`#dp-all-group-${i}`}>{projectGroupNames[i]} <span>{items.length}</span></a>)}</nav>
@@ -30,7 +32,7 @@ function AllProjects() {
       <div className="dp-project-group-heading"><h3 id={`dp-all-heading-${i}`}><span>0{i+1}</span>{projectGroupNames[i]}</h3><p>{items.length} projects</p></div>
       {projectSections(items,i).map(([title,projects])=><div className="dp-project-subgroup" key={title || name}>
         {title && <h4 className="dp-project-subheading">{title} <span>{projects.length} projects</span></h4>}
-        <div className="dp-all-projects">{projects.map(project=><a className="dp-grid-project" key={project[2]} href={`/dmitry/projects/${project[2]}`}><img src={project[3]} alt={project[0]} loading="lazy"/><h4>{project[0]}</h4><p>{project[1]}</p></a>)}</div>
+        <div className="dp-all-projects">{projects.map(project=><a className="dp-grid-project" key={project[2]} href={`/dmitry/projects/${project[2]}`}><ProjectArtwork projectId={project[2]} src={project[3]} alt={project[0]}/><h4>{project[0]}</h4><p>{project[1]}</p></a>)}</div>
       </div>)}
     </section>)}
   </div>;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { projects, profile } from '../profile';
 import { getProjectDetail } from './projectDetails';
+import ProjectArtwork, { addinSymbols } from './ProjectArtwork';
 
 export default function ProjectPage() {
   const [menu, setMenu] = useState(false);
@@ -16,8 +17,8 @@ export default function ProjectPage() {
     <a className="dp-skip" href="#project-content">Skip to main content</a>
     <header className="dp-header dp-detail-header"><a href="/dmitry" aria-label="Le Dinh Hoa home"><img src="/profile/mark.svg" alt=""/></a><nav className={menu ? 'dp-main-nav open' : 'dp-main-nav'} aria-label="Main navigation">{['about','services','projects','experience','contact'].map(section => <a key={section} href={`/dmitry#dp-${section}`}>{section}</a>)}</nav><button className="dp-menu-button" aria-label="Toggle menu" aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? '×' : '☰'}</button></header>
     <main id="project-content">
-      <section className={`dp-detail-hero${project.modelImage ? ' dp-model-hero' : ''}`}>
-        <img className="dp-detail-cover" src={project.modelImage || '/profile/detail-cover.svg'} alt={project.modelImage ? `${project.title} — MEP model` : ''}/>
+      <section className={`dp-detail-hero${project.modelImage ? ' dp-model-hero' : addinSymbols[project.id] ? ' dp-addin-hero' : ''}`}>
+        <ProjectArtwork projectId={project.id} className={addinSymbols[project.id] ? 'dp-addin-hero-art' : 'dp-detail-cover'} src={project.modelImage || '/profile/detail-cover.svg'} alt={addinSymbols[project.id] ? `${project.title} symbol` : project.modelImage ? `${project.title} — MEP model` : ''}/>
         <div className="dp-detail-nav"><a href="/dmitry#dp-projects">⟵ Back</a><a href="/dmitry?projects=all#dp-projects">To all projects ⟶</a></div>
         <div className="dp-detail-title"><div className="dp-tags">{project.tools.map(tool => <span key={tool}>{tool}</span>)}</div><h1>{project.title}<span>/</span></h1><p>{project.category} · {project.number}</p></div>
       </section>
