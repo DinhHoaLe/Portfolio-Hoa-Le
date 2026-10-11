@@ -2,7 +2,13 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import ComparisonSwitcher from './ComparisonSwitcher.jsx';
 
-const { default: App } = await import(window.location.pathname === '/dmitry/projects' ? './dmitry/ProjectsPage.jsx' : window.location.pathname.startsWith('/dmitry/projects/') ? './dmitry/ProjectPage.jsx' : window.location.pathname.startsWith('/dmitry/experience/') ? './dmitry/RolePage.jsx' : './dmitry/Dmitry.jsx');
+const legacyPath = window.location.pathname;
+if (legacyPath === '/dmitry' || legacyPath.startsWith('/dmitry/projects') || legacyPath.startsWith('/dmitry/experience/')) {
+  const canonicalPath = legacyPath.replace(/^\/dmitry/, '') || '/';
+  window.history.replaceState(null, '', canonicalPath + window.location.search + window.location.hash);
+}
+const path = window.location.pathname.replace(/\/$/, '') || '/';
+const { default: App } = await import(path === '/projects' ? './dmitry/ProjectsPage.jsx' : path.startsWith('/projects/') ? './dmitry/ProjectPage.jsx' : path.startsWith('/experience/') ? './dmitry/RolePage.jsx' : './dmitry/Dmitry.jsx');
 await import('./dmitry/dmitry.css');
 await import('./dmitry/layout.css');
 let savedTheme = 'dark';

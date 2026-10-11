@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/dmitry", "destination": "/", "permanent": true },
+    { "source": "/dmitry/projects/:path*", "destination": "/projects/:path*", "permanent": true },
+    { "source": "/dmitry/experience/:path*", "destination": "/experience/:path*", "permanent": true }
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
