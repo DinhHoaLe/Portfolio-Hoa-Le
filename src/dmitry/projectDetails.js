@@ -1,3 +1,4 @@
+import { toolDescriptions } from './toolDescriptions';
 // Project facts and responsibilities from Le-Dinh-Hoa-SD.pdf (pages 2–10).
 const gitlab = path => [['Source code', `https://gitlab.com/dinhhoa.0701/${path}`]];
 const github = path => `https://github.com/DinhHoaLe/${path}`;
@@ -9,6 +10,14 @@ const webResponsibilities = [
 const personal = { customer:'Personal', period:'2025', role:'Developer', team:'1 developer' };
 const fullstack = { role:'Full-Stack Developer', team:'3 members' };
 export const projectDetails = {
+  'hoa-project-52': {
+    title: 'MEP Tool — Check Clash',
+    description: 'Check clashes between MEP elements in Revit.',
+    customer: 'MEP tool collection', role: 'Revit Add-in Developer',
+    tools: ['C#', '.NET', 'Revit API'],
+    scopeNote: 'Project folder: MEP_Check_Clash_ver1',
+    sections: [], links: [],
+  },
   'hoa-project-34': {
   "title": "MEP Tool — Check Data from Family",
   "description": "Review data from Revit families.",
@@ -37,23 +46,9 @@ export const projectDetails = {
   "sections": [],
   "links": []
 },
-  'hoa-project-36': {
-  "title": "MEP Tool — Create Cable Tray from CAD",
-  "description": "Create Revit cable trays from CAD input.",
-  "customer": "MEP tool collection",
-  "role": "Revit Add-in Developer",
-  "tools": [
-    "C#",
-    ".NET",
-    "Revit API"
-  ],
-  "scopeNote": "Project folder: MEP_Create_CableTray_From_CAD_ver1",
-  "sections": [],
-  "links": []
-},
   'hoa-project-37': {
-  "title": "MEP Tool — Create Duct from CAD",
-  "description": "Create Revit ducts from CAD input.",
+  "title": "MEP Tool — Create Duct / Cable Tray / Pipe / Conduit / Line from CAD",
+  "description": "Create Revit ducts, cable trays, pipes, conduits, and lines from CAD input.",
   "customer": "MEP tool collection",
   "role": "Revit Add-in Developer",
   "tools": [
@@ -182,7 +177,15 @@ export const projectDetails = {
   },
   'hoa-project-10': {
     ...fullstack, title:'OxiNote — Cross-Platform Note-Taking Application', period:'Jun 2025 — Present', customer:'MakerPath',
-    description:'A React Native application for iOS and Android that manages Markdown notes, attachments, and local data with offline support.',
+    description:'A demo application under active development for iOS and Android, exploring Markdown notes, attachments, and local data with offline support.',
+    status:'In development — Demo product',
+    scopeNote:'OxiNote is currently in development. This is a demo product; its interface and features are still being developed.',
+    previewImage:'/profile/edited/oxinote-demo-preview.png', previewFormat:'mobile',
+    previewCaption:'Development demo — OxiNote Editor with the development tools menu open. The interface and features are still in progress.',
+    previewGallery:[
+      {image:'/profile/edited/oxinote-demo-preview.png', caption:'OxiNote Editor — development tools menu. Demo product under active development.'},
+      {image:'/profile/edited/oxinote-photo-picker-preview.png', caption:'Photo selection interface — demo preview with an empty photo library. Development in progress.'},
+    ],
     tools:['React Native', 'Node.js', 'JavaScript', 'TypeScript', 'JSON-based storage', 'Markdown', 'Git'],
     sections:[['Architecture & UX', ['Research the technical foundation, scalability, and note-management UX patterns.', 'Structure the app around a feature-based architecture and define its local data strategy.']], ['Frontend', ['Develop React Native components and a reusable design system with consistent typography and UI patterns.', 'Build the note editor and image/file import features with custom resizing and previews.']], ['Local Data & Storage', ['Implement authentication and note CRUD operations.', 'Design a local JSON database for profiles, tags, and settings.', 'Store notes as individual Markdown files and link images and attachments through stable internal references.']]], links:[],
   },
@@ -198,7 +201,7 @@ export const projectDetails = {
     links:[['Source code',github('Ecommerce-system')], ['Live website','https://exclusive-3h.netlify.app/']],
   },
   'hoa-project-13': {
-    ...fullstack, title:'EasySet — Flight Booking Website', period:'2024 — 2025', customer:'EasySet',
+    ...fullstack, title:'EasySet — Flight Booking Website', period:'2024 — 2025', customer:'EasySet', adminPreviewImage:'/profile/edited/easyset-admin-preview.png',
     description:'A flight-booking web application with separate user and administration interfaces.', tools:webStack, sections:webResponsibilities,
     links:[['User frontend repository',github('Booking_Flight_GIS_FE')], ['Admin frontend repository',github('Booking-Admin-FE-1')], ['User website','https://booking-fe-4rk8.onrender.com/'], ['Admin website','https://booking-admin-fe.onrender.com/']],
   },
@@ -243,6 +246,70 @@ export const projectDetails = {
     scopeNote:'Completed independently, outside company assignments.',
     tools:[], sections:[], links:[],
   },
+  'hoa-project-51': {
+    title:'Pipe Sizing & Pressure Loss Calculation — 01',
+    description:'Chilled-water piping calculation model with 12°C supply (VL) and 18°C return (RL) reports. The model views document pipe sizes, flow rates, velocity, friction, and pressure drop by section.',
+    customer:'MEP calculation project',
+    tools:['Revit', 'Chilled-Water Systems'],
+    galleryHeading:'Calculation Models',
+    galleryCaption:'Chilled-water pipe pressure loss analysis',
+    modelGallery:[{name:'Supply — 12°C (VL)',image:'/profile/edited/chilled-water-supply-12c-calculation.png'},{name:'Return — 18°C (RL)',image:'/profile/edited/chilled-water-return-18c-calculation.png'}],
+    sections:[], links:[],
+  },
+  'hoa-project-48': {
+    title:'Swanbay Dong Nai — Land Villas',
+    unitCount:11,
+    unitCodes:['Va1','Va1A','Va2','Va2S','Va3','Va3ss','Vb1','Vb1s','Vb2','Vd1','Vd2'],
+    description:'MEP model for the Land Villas residential project at Swanbay, Dong Nai.',
+    customer:'Outsource project · Residential & Townhouse',
+    scopeNote:'Completed independently, outside company assignments.',
+    tools:['Revit'], sections:[], links:[],
+  },
+  'hoa-project-49': {
+    title:'Swanbay Dong Nai — Shop Villas',
+    unitCount:5,
+    unitCodes:['Sva','SVb','SVc','SVd','SVe'],
+    description:'MEP model for the Shop Villas residential project at Swanbay, Dong Nai.',
+    customer:'Outsource project · Residential & Townhouse',
+    scopeNote:'Completed independently, outside company assignments.',
+    tools:['Revit'], sections:[], links:[],
+  },
+  'hoa-project-50': {
+    title:'Swanbay Dong Nai — Townhouse',
+    unitCount:8,
+    unitCodes:['TH Corner 1','TH Corner 2','TH Corner 3','TH1','TH2','TH3','TH4','TH4s'],
+    description:'MEP model for the Townhouse residential project at Swanbay, Dong Nai.',
+    customer:'Outsource project · Residential & Townhouse',
+    scopeNote:'Completed independently, outside company assignments.',
+    tools:['Revit'], sections:[], links:[],
+  },
+  'hoa-project-47': {
+    title:'Duct Sizing & Pressure Loss Calculation — 02',
+    description:'Revit ventilation calculation project with ZUL/AUL and ABL/FOL model views and Excel pressure loss reports. The reports document duct sizes, airflow, velocity, friction, fitting losses, and pressure loss by section.',
+    customer:'MEP calculation project',
+    tools:['Revit', 'Excel', 'Ventilation Systems'],
+    galleryHeading:'Calculation Models',
+    galleryCaption:'Ventilation system pressure loss analysis',
+    modelGallery:[{name:'ZUL and AUL',image:'/profile/edited/ventilation-training-02-zul-aul.jpg'},{name:'ABL and FOL',image:'/profile/edited/ventilation-training-02-abl-fol.jpg'}],
+    sections:[],
+    links:[['ZUL / AUL — Excel Pressure Loss Report','/profile/reports/training-02-zul-aul.xlsx'],['ABL / FOL — Excel Pressure Loss Report','/profile/reports/training-02-abl-fol.xlsx']],
+  },
+  'hoa-project-46': {
+    title:'Duct Sizing & Pressure Loss Calculation — 01',
+    description:'Revit ventilation calculation project reviewing airflow, duct velocity, friction loss, and pressure drop using System Inspector.',
+    customer:'MEP calculation project',
+    tools:['Revit', 'System Inspector', 'Ventilation Systems'],
+    galleryHeading:'Calculation Models',
+    galleryCaption:'Ventilation system pressure loss analysis',
+    sections:[], links:[],
+  },
+  'hoa-project-45': {
+    title:'Fire Pump Room',
+    description:'BIM model of a fire pump room and associated fire protection piping.',
+    customer:'Outsource project',
+    scopeNote:'Completed independently, outside company assignments.',
+    tools:['Revit'], sections:[], links:[],
+  },
   'hoa-project-32': {
     title:'Gladstone & Loretta',
     description:'MEP model for Gladstone & Loretta.',
@@ -251,6 +318,10 @@ export const projectDetails = {
     tools:[], sections:[], links:[],
   },
 };
+
+for (const [id, description] of Object.entries(toolDescriptions)) {
+  projectDetails[id] = {...projectDetails[id], ...description, period:undefined, team:undefined};
+}
 
 export function getProjectDetail(project) {
   const detail = projectDetails[project.id];

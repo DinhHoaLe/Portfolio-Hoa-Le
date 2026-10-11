@@ -24,7 +24,7 @@ function Section({ id, number, title, emphasis, meta, children }) {
 }
 
 function RoleLabel() {
-  return <p className="typer">Revit Software Developer</p>;
+  return <p className="typer">{profile.role}</p>;
 }
 function Hero() {
   return <section className="hero" id="top"><div className="wrap"><div className="sheet"><div className="hero-sheet"><div className="hero-left">

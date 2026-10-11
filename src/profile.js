@@ -2,12 +2,12 @@ import { projectDetails } from './dmitry/projectDetails';
 // Shared profile content; project details updated from Le-Dinh-Hoa-SD.pdf.
 export const profile = {
   name: 'Le Dinh Hoa', firstName: 'Le Dinh', lastName: 'Hoa',
-  role: 'Revit Software Developer', subtitle: 'BIM Automation Engineer · MEP Engineer',
+  role: 'BIM Automation Engineer', subtitle: 'MEP Modeler · Full-stack Development · MEP Engineering',
   location: 'Ho Chi Minh City, Vietnam', email: 'dinhhoa.0701@gmail.com', phone: '0985 671 678',
-  portrait: '/profile/edited/portrait-cream.png', resume: '/profile/Hoa-Dinh-Le-SD.docx',
+  portrait: '/profile/edited/portrait-professional.png', resume: '/profile/Hoa-Dinh-Le-SD.docx',
   github: 'https://github.com/DinhHoaLe', gitlab: 'https://gitlab.com/dinhhoa.0701',
   intro: 'Revit add-ins, BIM automation, and full-stack applications — built on practical MEP engineering experience.',
-  summary: 'I aim to bridge MEP engineering and software development by building practical tools for the AEC industry. My focus is on Revit add-in development, BIM automation, and full-stack web applications that connect models, workflows, and project data. Drawing on my experience in MEP design and multidisciplinary coordination, I strive to reduce repetitive work, improve model quality, and make engineering processes more efficient.',
+  summary: 'My career goal is to become a BIM Automation and AI Engineer, specializing in Revit API development, intelligent workflow automation, and AI-driven engineering solutions for the AEC industry. I aim to build tools that automate repetitive MEP tasks, validate BIM models, extract and analyze engineering data, and connect BIM environments with web-based platforms. By combining my MEP engineering knowledge with C#/.NET, full-stack development, and AI technologies, I strive to create practical solutions that improve design accuracy, coordination, and productivity across the building lifecycle.',
 };
 export const skills = [
   ['Revit Add-in Development',['C#','.NET','Revit API','Revit SDK','WPF','Python']],
@@ -16,7 +16,7 @@ export const skills = [
   ['Software Engineering',['OOP','Debugging','Documentation','Version control']],
   ['Web / Data',['React','Next.js','Node.js','TypeScript','JavaScript','MongoDB','PostgreSQL']],
   ['AI-assisted Development',['ChatGPT','Gemini','GitHub Copilot','Codex']],
-  ['Language & Office',['English','Word','Excel','PowerPoint']],
+  ['Language & Office',['English','Word','Excel','PowerPoint','Power BI']],
 ];
 export const highlights = [['Revit development','~3 years'],['BIM / MEP modeling','5+ years'],['MEP design','2+ years'],['Full-stack web','~2 years']];
 export const education = [
@@ -33,7 +33,7 @@ export const experience = [
     'Implemented authentication, CRUD operations, a JSON-based local database, and file/asset linking for offline use.',
     'Maintained data consistency and stable internal file references to prevent data loss and broken attachments.',
   ]],
-  ['Dec 2021 — Present','BIM Automation Developer & MEPF Modeler','DCMvn','Munich Airport · ZAM München · Überseequartier · Konzerthaus München · Munich Re · EKB',[
+  ['Dec 2021 — Present','BIM Automation Developer & MEPF Modeler','DCMvn — BKW Engineering','Munich Airport · ZAM München · Überseequartier · Konzerthaus München · Munich Re · EKB',[
     'Develop internal Revit add-ins and BIM automation tools using C#/.NET, Revit API, WPF, and Python.',
     'Translate BIM/MEP production requirements into practical software for sheet creation, family placement, parameter management, MEP element generation, routing, and model quality checks.',
     'Work with Revit elements, parameters, MEP systems, connectors, and geometry to automate repetitive modeling tasks and improve model consistency.',
@@ -96,10 +96,18 @@ export const projects = [
   {title:'Manor Central Park — High Rise 16-CT2', description:'MEP model for Manor Central Park — High Rise 16-CT2.', tools:[], category:'BIM / MEP Projects', projectType:'Outsource', context:'Outsource project', projectNumber:30},
   {title:'Manor Central Park — High Rise 5-CT1', description:'MEP model for Manor Central Park — High Rise 5-CT1.', tools:[], category:'BIM / MEP Projects', projectType:'Outsource', context:'Outsource project', projectNumber:31},
   {title:'Gladstone & Loretta', description:'MEP model for Gladstone & Loretta.', tools:[], category:'BIM / MEP Projects', projectType:'Outsource', context:'Outsource project', projectNumber:32},
+  {title:'Duct Sizing & Pressure Loss Calculation — 01', description:'Revit ventilation calculation project reviewing airflow, duct velocity, friction loss, and pressure drop.', tools:['Revit','System Inspector'], category:'BIM / MEP Projects', projectType:'Training', context:'MEP calculation project', projectNumber:46},
+  {title:'Duct Sizing & Pressure Loss Calculation — 02', description:'Revit ventilation models with Excel reports documenting duct sizes, airflow, velocity, and section pressure losses.', tools:['Revit','Excel'], category:'BIM / MEP Projects', projectType:'Training', context:'MEP calculation project', projectNumber:47},
+  {title:'Pipe Sizing & Pressure Loss Calculation — 01', description:'Chilled-water piping calculation model with 12°C supply and 18°C return pressure loss reports.', tools:['Revit'], category:'BIM / MEP Projects', projectType:'Training', context:'MEP calculation project', projectNumber:51},
+  {title:'Fire Pump Room', description:'BIM model of a fire pump room and associated fire protection piping.', tools:['Revit'], category:'BIM / MEP Projects', projectType:'Outsource', context:'Outsource project', projectNumber:45},
+  {title:'Swanbay Dong Nai — Land Villas', description:'MEP model for the Land Villas residential project at Swanbay, Dong Nai.', tools:['Revit'], category:'BIM / MEP Projects', projectType:'Outsource', outsourceSector:'Residential', context:'Outsource project', projectNumber:48},
+  {title:'Swanbay Dong Nai — Shop Villas', description:'MEP model for the Shop Villas residential project at Swanbay, Dong Nai.', tools:['Revit'], category:'BIM / MEP Projects', projectType:'Outsource', outsourceSector:'Residential', context:'Outsource project', projectNumber:49},
+  {title:'Swanbay Dong Nai — Townhouse', description:'MEP model for the Townhouse residential project at Swanbay, Dong Nai.', tools:['Revit'], category:'BIM / MEP Projects', projectType:'Outsource', outsourceSector:'Residential', context:'Outsource project', projectNumber:50},
 ].map((p,i)=>{
   const projectNumber = p.projectNumber || (p.title === 'Revit Family Library' ? 27 : i+1);
   const id = `hoa-project-${projectNumber}`;
   const detail = projectDetails[id];
+  const previewImage = {8:'/profile/edited/buildsense-map-preview.png',9:'/profile/edited/digital-twin-preview.png',11:'/profile/edited/elearning-preview.png',12:'/profile/edited/exclusive-preview.png',13:'/profile/edited/easyset-preview.png'}[projectNumber];
   const modelImage = {
     15: '/profile/edited/airport-model-white.png',
     16: '/profile/edited/zam-muenchen-model.png',
@@ -116,15 +124,40 @@ export const projects = [
     42: '/profile/edited/tuv-arena-model.png',
     43: '/profile/edited/ibdh-sq-fm-model-clean.png',
     44: '/profile/edited/vienna-airport-model-clean.png',
+    45: '/profile/edited/fire-pump-room-model.png',
+    46: '/profile/edited/duct-sizing-zul-aul.jpg',
+    47: '/profile/edited/ventilation-training-02-zul-aul.jpg',
+    48: '/profile/edited/swanbay-land-villas-model.png',
+    49: '/profile/edited/swanbay-shop-villas-model.png',
+    50: '/profile/edited/swanbay-townhouse-model.png',
+    51: '/profile/edited/chilled-water-supply-12c-calculation.png',
   }[projectNumber];
-  return {...p, ...(detail ? {title:detail.title, description:detail.description, tools:detail.tools} : {}), id, number:String(projectNumber).padStart(2,'0'), image:modelImage || `/profile/project-${projectNumber}.svg`, modelImage, modelGallery:projectNumber===23 ? [{name:'VT8',image:modelImage},{name:'AGF',image:'/profile/edited/ekb-agf-white.png'}] : undefined, stats:p.category};
+  return {...p, ...(detail ? {title:detail.title, description:detail.description, tools:detail.tools} : {}), id, number:String(projectNumber).padStart(2,'0'), image:p.category === 'Web Development' ? `/profile/symbols/web-${projectNumber}.svg` : modelImage || `/profile/project-${projectNumber}.svg`, previewImage, modelImage, modelGallery:projectNumber===46 ? [{name:'ZUL and AUL',image:modelImage},{name:'ABL and FOL',image:'/profile/edited/duct-sizing-abl-fol.jpg'}] : projectNumber===23 ? [{name:'VT8',image:modelImage},{name:'AGF',image:'/profile/edited/ekb-agf-white.png'}] : undefined, stats:p.category};
 });
 // Revit add-in projects supplied in the folder screenshot.
-for (const id of ['hoa-project-1','hoa-project-3']) {
+for (const id of ['hoa-project-1','hoa-project-3','hoa-project-4','hoa-project-5','hoa-project-7','hoa-project-14','hoa-project-27']) {
   const index = projects.findIndex(project=>project.id===id);
   if (index >= 0) projects.splice(index,1);
 }
+// Separate production applications from outsourced demonstrations.
+for (const project of projects) {
+  if (project.category === 'Web Development') {
+    project.projectType = ['hoa-project-10','hoa-project-8','hoa-project-9'].includes(project.id) ? 'Real-World' : 'Outsource Demo';
+  }
+}
+const oxiNoteIndex = projects.findIndex(project=>project.id==='hoa-project-10');
+const [oxiNote] = projects.splice(oxiNoteIndex,1);
+projects.splice(projects.findIndex(project=>project.id==='hoa-project-8'),0,oxiNote);
 projects.splice(0,0,...[
+  {
+    id: 'hoa-project-52', number: '52',
+    title: 'MEP Tool — Check Clash',
+    description: 'Check clashes between MEP elements in Revit.',
+    folderName: 'MEP_Check_Clash_ver1',
+    tools: ['C#', '.NET', 'Revit API'],
+    category: 'BIM Automation', context: 'MEP tool collection',
+    image: '/profile/edited/addin-symbol-sheet-v3.png', stats: 'BIM Automation',
+  },
   {
     "id": "hoa-project-34",
     "number": "34",
@@ -158,26 +191,10 @@ projects.splice(0,0,...[
     "stats": "BIM Automation"
   },
   {
-    "id": "hoa-project-36",
-    "number": "36",
-    "title": "MEP Tool — Create Cable Tray from CAD",
-    "description": "Create Revit cable trays from CAD input.",
-    "folderName": "MEP_Create_CableTray_From_CAD_ver1",
-    "tools": [
-      "C#",
-      ".NET",
-      "Revit API"
-    ],
-    "category": "BIM Automation",
-    "context": "MEP tool collection",
-    "image": "/profile/project-36.svg",
-    "stats": "BIM Automation"
-  },
-  {
     "id": "hoa-project-37",
     "number": "37",
-    "title": "MEP Tool — Create Duct from CAD",
-    "description": "Create Revit ducts from CAD input.",
+    "title": "MEP Tool — Create Duct / Cable Tray / Pipe / Conduit / Line from CAD",
+    "description": "Create Revit ducts, cable trays, pipes, conduits, and lines from CAD input.",
     "folderName": "MEP_Create_Duct_From_CAD_ver1",
     "tools": [
       "C#",
@@ -192,8 +209,8 @@ projects.splice(0,0,...[
   {
     "id": "hoa-project-38",
     "number": "38",
-    "title": "MEP Tool — Create Duct from IFC",
-    "description": "Create Revit ducts from IFC input.",
+    "title": "MEP Tool — Create & Update MEP Elements from IFC",
+    "description": "Create and update supported Revit MEP elements from linked IFC models, with tracked source changes.",
     "folderName": "MEP_Create_Duct_From_IFC_ver1",
     "tools": [
       "C#",
