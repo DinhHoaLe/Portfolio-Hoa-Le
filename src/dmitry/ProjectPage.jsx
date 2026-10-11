@@ -7,7 +7,7 @@ export default function ProjectPage() {
   const [menu, setMenu] = useState(false);
   const id = window.location.pathname.split('/').filter(Boolean).at(-1);
   const index = projects.findIndex(p => p.id === id);
-  if (!projects[index]) return <main className="dp-detail-missing"><h1>Project not found</h1><a href="/#dp-projects">Back to projects →</a></main>;
+  if (!projects[index]) return <main className="dp-detail-missing"><h1>Project not found</h1><a href="/#projects">Back to projects →</a></main>;
   const project = getProjectDetail(projects[index]);
   const isWeb = project.category === 'Web Development';
   const areas = projects.filter(item=>item.parentId===project.id);
@@ -16,11 +16,11 @@ export default function ProjectPage() {
   const next = projects[(index + 1) % projects.length];
   return <div className="dp-site dp-detail">
     <a className="dp-skip" href="#project-content">Skip to main content</a>
-    <header className="dp-header dp-detail-header"><a href="/" aria-label="Le Dinh Hoa home"><img src="/profile/mark.svg" alt=""/></a><nav className={menu ? 'dp-main-nav open' : 'dp-main-nav'} aria-label="Main navigation">{['about','services','projects','experience','contact'].map(section => <a key={section} href={`/#dp-${section}`}>{section}</a>)}</nav><button className="dp-menu-button" aria-label="Toggle menu" aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? '×' : '☰'}</button></header>
+    <header className="dp-header dp-detail-header"><a href="/" aria-label="Le Dinh Hoa home"><img src="/profile/mark.svg" alt=""/></a><nav className={menu ? 'dp-main-nav open' : 'dp-main-nav'} aria-label="Main navigation">{['about','services','projects','experience','contacts'].map(section => <a key={section} href={`/#${section}`}>{section}</a>)}</nav><button className="dp-menu-button" aria-label="Toggle menu" aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? '×' : '☰'}</button></header>
     <main id="project-content">
       <section className={`dp-detail-hero${isWeb ? ' dp-web-hero' : addinSymbols[project.id] ? ' dp-addin-hero' : ' dp-model-hero'}`}>
         <ProjectArtwork projectId={project.id} className={isWeb ? 'dp-web-hero-art' : addinSymbols[project.id] ? 'dp-addin-hero-art' : 'dp-detail-cover'} src={isWeb ? project.image : project.previewImage || project.modelImage || project.image} alt={isWeb || addinSymbols[project.id] ? `${project.title} symbol` : project.previewImage ? `${project.title} — application preview` : project.modelImage ? `${project.title} — MEP model` : project.title}/>
-        <div className="dp-detail-nav"><a href="/#dp-projects">⟵ Back</a><a href="/projects">To all projects ⟶</a></div>
+        <div className="dp-detail-nav"><a href="/#projects">⟵ Back</a><a href="/projects">To all projects ⟶</a></div>
         <div className="dp-detail-title"><div className="dp-tags">{project.tools.map(tool => <span key={tool}>{tool}</span>)}</div><h1>{project.title}<span>/</span></h1><p>{project.category} · {project.number}</p></div>
       </section>
       <div className="dp-detail-body">{parent && <a className="dp-area-parent" href={`/projects/${parent.id}`}>⟵ EKB project overview</a>}

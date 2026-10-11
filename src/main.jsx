@@ -8,6 +8,11 @@ if (legacyPath === '/dmitry' || legacyPath.startsWith('/dmitry/projects') || leg
   window.history.replaceState(null, '', canonicalPath + window.location.search + window.location.hash);
 }
 const path = window.location.pathname.replace(/\/$/, '') || '/';
+const legacyHash = window.location.hash;
+if (legacyHash.startsWith('#dp-') || legacyHash === '#contact') {
+  const cleanHash = legacyHash.replace(/^#dp-/, '#').replace(/^#contact$/, '#contacts');
+  window.history.replaceState(null, '', window.location.pathname + window.location.search + cleanHash);
+}
 const { default: App } = await import(path === '/projects' ? './dmitry/ProjectsPage.jsx' : path.startsWith('/projects/') ? './dmitry/ProjectPage.jsx' : path.startsWith('/experience/') ? './dmitry/RolePage.jsx' : './dmitry/Dmitry.jsx');
 await import('./dmitry/dmitry.css');
 await import('./dmitry/layout.css');

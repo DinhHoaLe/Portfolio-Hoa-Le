@@ -277,7 +277,7 @@ img { display: block; max-width: 100%; }
 .dp-contact-socials { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 38px; }
 .dp-contact-socials a { padding: 12px 17px; border: 1px solid var(--dp-line); text-decoration: none; font-size: 13px; border-radius: 30px; }
 .dp-contact-socials a:hover { color: var(--dp-bg); background: var(--dp-fg); }
-#dp-contact { padding-bottom: 150px; }
+#contacts { padding-bottom: 150px; }
 .dp-tool-group { padding-block: 30px; }
 .dp-tool { width: 78px; gap: 15px; }
 .dp-tool img, .dp-tool-initial { width: 44px; height: 44px; }
