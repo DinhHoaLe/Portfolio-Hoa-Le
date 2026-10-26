@@ -170,10 +170,15 @@ export const projectDetails = {
   },
   'hoa-project-9': {
     ...fullstack, title:'Digital Twin & Smart Infrastructure Platform', period:'Jan 2026 — Present', customer:'Digital Twin & Smart Infrastructure Platform',
-    description:'A digital twin platform connecting GIS, BIM, and IoT data to represent infrastructure and its operational information.',
+    description:'An airport digital twin platform connecting GIS, BIM, and IoT data, with multi-airport navigation, sensor monitoring, and live operational views.',
+    previewImage:'/profile/edited/aerotwin-long-thanh-sensors.png',
+    previewGallery:[
+      {image:'/profile/edited/aerotwin-long-thanh-sensors.png', caption:'Long Thanh International Airport (VVLT) — indoor sensor monitoring, crowd density, and live trend analysis.'},
+      {image:'/profile/edited/aerotwin-vietnam-green-airport.png', caption:'Vietnam Green Airport (VVGA) — airport overview with BIM context, aircraft positions, and sensor monitoring.'},
+    ],
     tools:['ArcGIS API', 'React', 'Node.js', 'TypeScript', 'WebSockets', 'PostgreSQL / PostGIS', 'Git'],
     sections:[['GIS & BIM Interface', ['Synchronize 2D spatial maps with 3D digital twin scenes using ArcGIS Maps SDK for JavaScript.', 'Position airport IFC/Revit models in the GIS environment.', 'Implement hit testing and object selection for 3D building components and IoT objects.']], ['Backend & Data', ['Model spatial relationships, indoor BIM attributes, and high-frequency IoT data in PostgreSQL/PostGIS.', 'Maintain persistent connections through Node.js and Socket.io.', 'Build REST APIs for device inventories, BIM technical specifications, and configurable alert thresholds.']]],
-    links:[['Frontend repository',github('Digital-Twin-Airport-FE.git')], ['Backend repository',github('Digital-Twin-Airport-BE.git')], ['Live platform','https://digital-twin-vaa.vercel.app/map']],
+    links:[['Frontend repository',github('Digital-Twin-Airport-FE.git')], ['Backend repository',github('Digital-Twin-Airport-BE.git')], ['Live platform','https://digital-twin-airport-web-kukc.vercel.app/?airport=VVGA']],
   },
   'hoa-project-10': {
     ...fullstack, title:'OxiNote — Cross-Platform Note-Taking Application', period:'Jun 2025 — Present', customer:'MakerPath',

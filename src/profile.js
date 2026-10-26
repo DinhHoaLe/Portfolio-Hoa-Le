@@ -107,7 +107,7 @@ export const projects = [
   const projectNumber = p.projectNumber || (p.title === 'Revit Family Library' ? 27 : i+1);
   const id = `hoa-project-${projectNumber}`;
   const detail = projectDetails[id];
-  const previewImage = {8:'/profile/edited/buildsense-map-preview.png',9:'/profile/edited/digital-twin-preview.png',11:'/profile/edited/elearning-preview.png',12:'/profile/edited/exclusive-preview.png',13:'/profile/edited/easyset-preview.png'}[projectNumber];
+  const previewImage = {8:'/profile/edited/buildsense-map-preview.png',9:'/profile/edited/aerotwin-long-thanh-sensors.png',11:'/profile/edited/elearning-preview.png',12:'/profile/edited/exclusive-preview.png',13:'/profile/edited/easyset-preview.png'}[projectNumber];
   const modelImage = {
     28: '/profile/edited/dormitory-england-model.png',
     29: '/profile/edited/manor-central-park-4-ct1-model.png',
