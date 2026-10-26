@@ -109,30 +109,17 @@ export const projects = [
   const detail = projectDetails[id];
   const previewImage = {8:'/profile/edited/buildsense-map-preview.png',9:'/profile/edited/digital-twin-preview.png',11:'/profile/edited/elearning-preview.png',12:'/profile/edited/exclusive-preview.png',13:'/profile/edited/easyset-preview.png'}[projectNumber];
   const modelImage = {
-    15: '/profile/edited/airport-model-white.png',
-    16: '/profile/edited/zam-muenchen-model.png',
-    18: '/profile/edited/ueberseequartier-model.png',
-    19: '/profile/edited/mep-model-white.png',
-    22: '/profile/edited/munich-re-model-white.png',
-    23: '/profile/edited/ekb-white.png',
     28: '/profile/edited/dormitory-england-model.png',
     29: '/profile/edited/manor-central-park-4-ct1-model.png',
     30: '/profile/edited/manor-central-park-16-ct2-model.png',
     31: '/profile/edited/manor-central-park-5-ct1-model.png',
     32: '/profile/edited/gladstone-loretta-model.png',
-    33: '/profile/edited/abp-mkk-bad-oeynhausen-white.png',
-    42: '/profile/edited/tuv-arena-model.png',
-    43: '/profile/edited/ibdh-sq-fm-model-clean.png',
-    44: '/profile/edited/vienna-airport-model-clean.png',
     45: '/profile/edited/fire-pump-room-model.png',
-    46: '/profile/edited/duct-sizing-zul-aul.jpg',
-    47: '/profile/edited/ventilation-training-02-zul-aul.jpg',
     48: '/profile/edited/swanbay-land-villas-model.png',
     49: '/profile/edited/swanbay-shop-villas-model.png',
     50: '/profile/edited/swanbay-townhouse-model.png',
-    51: '/profile/edited/chilled-water-supply-12c-calculation.png',
   }[projectNumber];
-  return {...p, ...(detail ? {title:detail.title, description:detail.description, tools:detail.tools} : {}), id, number:String(projectNumber).padStart(2,'0'), image:p.category === 'Web Development' ? `/profile/symbols/web-${projectNumber}.svg` : modelImage || `/profile/project-${projectNumber}.svg`, previewImage, modelImage, modelGallery:projectNumber===46 ? [{name:'ZUL and AUL',image:modelImage},{name:'ABL and FOL',image:'/profile/edited/duct-sizing-abl-fol.jpg'}] : projectNumber===23 ? [{name:'VT8',image:modelImage},{name:'AGF',image:'/profile/edited/ekb-agf-white.png'}] : undefined, stats:p.category};
+  return {...p, ...(detail ? {title:detail.title, description:detail.description, tools:detail.tools} : {}), id, number:String(projectNumber).padStart(2,'0'), image:p.category === 'Web Development' ? `/profile/symbols/web-${projectNumber}.svg` : modelImage || `/profile/project-${projectNumber}.svg`, previewImage, modelImage, stats:p.category};
 });
 // Revit add-in projects supplied in the folder screenshot.
 for (const id of ['hoa-project-1','hoa-project-3','hoa-project-4','hoa-project-5','hoa-project-7','hoa-project-14','hoa-project-27']) {
@@ -275,10 +262,10 @@ projects.splice(0,0,...[
 // EKB areas have individual portfolio entries while retaining the project overview.
 const ekbParent = projects.find(project=>project.id==='hoa-project-23');
 const ekbAreas = [
-  {id:'ekb-vt8',siteName:'VT8',number:'23.1',modelImage:'/profile/edited/ekb-white.png'},
-  {id:'ekb-agf',siteName:'AGF',number:'23.2',modelImage:'/profile/edited/ekb-agf-white.png'},
-  {id:'ekb-vt16',siteName:'VT16',number:'23.3',modelImage:'/profile/edited/ekb-vt16-white.png'},
-].map(area=>({...ekbParent,...area,parentId:ekbParent.id,title:`EKB · ${area.siteName}`,description:`${area.siteName} site model within the EKB Point Cloud / AutoCAD Plant 3D project.`,image:area.modelImage,modelGallery:[{name:area.siteName,image:area.modelImage}],tools:['AutoCAD Plant 3D','Point Cloud']}));
+  {id:'ekb-vt8',siteName:'VT8',number:'23.1'},
+  {id:'ekb-agf',siteName:'AGF',number:'23.2'},
+  {id:'ekb-vt16',siteName:'VT16',number:'23.3'},
+].map(area=>({...ekbParent,...area,parentId:ekbParent.id,title:`EKB · ${area.siteName}`,description:`${area.siteName} site area within the EKB Point Cloud / AutoCAD Plant 3D project.`,tools:['AutoCAD Plant 3D','Point Cloud']}));
 projects.splice(projects.indexOf(ekbParent)+1,0,...ekbAreas);
 
 // Model workflows distinguish Revit production from point-cloud / Plant 3D work.
@@ -290,6 +277,24 @@ for (const project of projects) {
 }
 // Keep the EKB overview address available; show its VT8 site only once in listings.
 ekbParent.hideFromListing = true;
+// Company models are presented as text cards; source images stay outside public assets.
+for (const project of projects.filter(item=>item.projectType === 'DCMvn')) {
+  project.companyCard = true;
+  project.textCard = true;
+  project.image = null;
+  delete project.modelImage;
+  delete project.modelGallery;
+  delete project.previewImage;
+  project.description = project.modelWorkflow === 'Point Cloud / AutoCAD Plant 3D'
+    ? 'Point Cloud-based as-built modeling and AutoCAD Plant 3D coordination.'
+    : 'MEPF modeling and multidisciplinary coordination.';
+}
+for (const project of projects.filter(item=>item.projectType === 'Training' && item.category === 'BIM / MEP Projects')) {
+  project.textCard = true;
+  project.image = null;
+  delete project.modelImage;
+  delete project.modelGallery;
+}
 export const links = [
   ['phone','tel:+84985671678',profile.phone],['email',`mailto:${profile.email}`,profile.email],
   ['GitHub',profile.github,'↗'],['GitLab',profile.gitlab,'↗'],['CV',profile.resume,'↓'],

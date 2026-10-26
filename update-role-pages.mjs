@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+const path='src/dmitry/Dmitry.jsx';
+let text=fs.readFileSync(path,'utf8').replace('references, experience, education','references, education');
+text=text.replace("import { profile", "import { roles } from './roles';\nimport { profile");
+const start=text.indexOf('{experience.map(');
+const end=text.indexOf('</div></section>',start);
+text=text.slice(0,start)+`{roles.map(role=><article key={role.id}><div className="dp-timeline-card"><h3>{role.company}</h3><p className="dp-timeline-role">{role.title}</p><time>{role.date}</time><p>{role.summary}</p><a className="dp-role-more" href={\`/dmitry/experience/\${role.id}\`}>More about this role +</a></div></article>)}`+text.slice(end);
+const eduStart=text.indexOf('<div className="dp-education-grid">');
+const eduEnd=text.indexOf('<a className="dp-text-link"',eduStart);
+text=text.slice(0,eduStart)+`<div className="dp-timeline dp-alternating dp-education-timeline">{education.slice(0,3).sort((a,b)=>Number(b[0].slice(0,4))-Number(a[0].slice(0,4))).map(([date,title,org])=><article key={org}><div className="dp-timeline-card"><h3>{org}</h3><p className="dp-timeline-role">{title}</p><time>{date}</time></div></article>)}</div>`+text.slice(eduEnd);
+fs.writeFileSync(path,text);

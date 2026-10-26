@@ -1,4 +1,5 @@
 import React from 'react';
+import { projects } from '../profile';
 
 // Display regions from the supplied symbol sheet without changing its pixels.
 export const addinSymbols = {
@@ -24,6 +25,12 @@ const webLogos = {
 const webNames = {'hoa-project-10':'OxiNote','hoa-project-14':'Cinema Booking','hoa-project-27':'Revit Family Library'};
 
 export default function ProjectArtwork({projectId, src, alt, className = ''}) {
+  const companyProject = projects.find(project=>project.id === projectId && project.textCard);
+  if (companyProject) return <div className={`dp-company-card ${className}`}>
+    <div className="dp-company-card-meta"><span>{companyProject.projectType === 'Training' ? 'MEP CALCULATION' : companyProject.modelWorkflow === 'Point Cloud / AutoCAD Plant 3D' ? 'PLANT 3D / POINT CLOUD' : 'REVIT / MEPF'}</span><span>{companyProject.number}</span></div>
+    <strong>{companyProject.title}</strong>
+    <div className="dp-company-card-footer"><span>{companyProject.projectType === 'Training' ? 'SIZING & PRESSURE LOSS' : companyProject.modelWorkflow === 'Point Cloud / AutoCAD Plant 3D' ? 'AS-BUILT MODELING' : 'MEPF MODELING'}<small>{companyProject.companyCard ? 'DCMvn — BKW Engineering' : 'Revit calculation practice'}</small></span><span aria-hidden="true">↗</span></div>
+  </div>;
   if (src?.startsWith('/profile/symbols/')) {
     const logo = webLogos[projectId];
     return <div className={`dp-web-logo ${className}`} role="img" aria-label={`${alt} — project logo`}>

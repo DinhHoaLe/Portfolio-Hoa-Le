@@ -161,6 +161,22 @@
 .dp-grid-project > img { mix-blend-mode:normal; opacity:1; filter:none; }
 .dp-model-thumbnail { height:320px; width:100%; background:#faf8f5; isolation:isolate; overflow:hidden; border-radius:12px; }
 .dp-model-thumbnail > img { width:100%; height:100%; object-fit:contain; mix-blend-mode:multiply; opacity:1; filter:none; }
+.dp-company-card { display:flex; flex-direction:column; justify-content:space-between; width:100%; height:320px; padding:26px 22px; background:#faf8f5; color:#17191c; border-radius:12px; overflow:hidden; }
+.dp-company-card-meta { display:flex; justify-content:space-between; gap:12px; font:10px/1.5 'JetBrains Mono',monospace; letter-spacing:.07em; }
+.dp-company-card > strong { display:block; margin:24px 0; font-size:clamp(22px,2.5vw,32px); line-height:1.15; font-weight:400; letter-spacing:-.04em; overflow-wrap:anywhere; }
+.dp-company-card-footer { display:flex; align-items:end; justify-content:space-between; gap:12px; font:10px/1.6 'JetBrains Mono',monospace; }
+.dp-company-card-footer small { display:block; margin-top:6px; font:11px/1.5 Arial,sans-serif; }
+.dp-company-card-footer > span:last-child { font:24px/1 Arial,sans-serif; }
+.dp-selected-media > .dp-company-card { height:100%; border-radius:0; padding:22px 16px; }
+.dp-selected-media .dp-company-card > strong { font-size:clamp(20px,2.2vw,28px); margin:16px 0; }
+.dp-company-hero { display:flex; flex-direction:column; justify-content:space-between; height:auto; min-height:570px; padding-bottom:60px; background:#faf8f5; color:#17191c; }
+.dp-company-hero::after { display:none; }
+.dp-company-hero .dp-detail-nav { position:relative; width:100%; }
+.dp-company-hero .dp-detail-title { position:relative; inset:auto; padding-inline:var(--dp-gutter); margin:90px auto 0; width:100%; max-width:1440px; }
+.dp-company-hero .dp-detail-title h1 { font-size:clamp(38px,6vw,80px); }
+.dp-company-hero .dp-detail-title h1 span { color:#59616b; }
+.dp-company-hero .dp-tags span { color:#383e46; border-color:#9ca3ac; }
+@media(max-width:700px) { .dp-company-hero { min-height:460px; padding-bottom:40px; } .dp-company-card > strong { font-size:28px; } }
 .dp-selected-media > .dp-model-thumbnail { height:100%; border-radius:0; }
 .dp-grid-project, .dp-selected-card { transition:transform .25s ease, box-shadow .25s ease; }
 .dp-grid-project > img, .dp-grid-project > .dp-web-logo, .dp-grid-project > .dp-addin-symbol { border-radius:12px; transition:box-shadow .25s ease; }

@@ -253,7 +253,6 @@ export const projectDetails = {
     tools:['Revit', 'Chilled-Water Systems'],
     galleryHeading:'Calculation Models',
     galleryCaption:'Chilled-water pipe pressure loss analysis',
-    modelGallery:[{name:'Supply — 12°C (VL)',image:'/profile/edited/chilled-water-supply-12c-calculation.png'},{name:'Return — 18°C (RL)',image:'/profile/edited/chilled-water-return-18c-calculation.png'}],
     sections:[], links:[],
   },
   'hoa-project-48': {
@@ -290,9 +289,8 @@ export const projectDetails = {
     tools:['Revit', 'Excel', 'Ventilation Systems'],
     galleryHeading:'Calculation Models',
     galleryCaption:'Ventilation system pressure loss analysis',
-    modelGallery:[{name:'ZUL and AUL',image:'/profile/edited/ventilation-training-02-zul-aul.jpg'},{name:'ABL and FOL',image:'/profile/edited/ventilation-training-02-abl-fol.jpg'}],
     sections:[],
-    links:[['ZUL / AUL — Excel Pressure Loss Report','/profile/reports/training-02-zul-aul.xlsx'],['ABL / FOL — Excel Pressure Loss Report','/profile/reports/training-02-abl-fol.xlsx']],
+    links:[],
   },
   'hoa-project-46': {
     title:'Duct Sizing & Pressure Loss Calculation — 01',
@@ -325,11 +323,13 @@ for (const [id, description] of Object.entries(toolDescriptions)) {
 
 export function getProjectDetail(project) {
   const detail = projectDetails[project.id];
-  if (detail) return { ...project, ...detail };
+  if (detail) return project.textCard
+    ? {...project, ...detail, image:null, modelImage:undefined, modelGallery:undefined, previewImage:undefined, links:[]}
+    : { ...project, ...detail };
   const isCadian = project.context.startsWith('CADIAN');
   const isArmo = project.context.startsWith('ARMO');
   const isPointCloud = project.modelWorkflow === 'Point Cloud / AutoCAD Plant 3D';
-  const company = project.context;
+  const company = project.companyCard ? 'DCMvn — BKW Engineering' : project.context;
   return {
     ...project, customer:company,
     role:isCadian ? 'CAD Operator' : isArmo ? 'Electrical Engineer' : 'MEPF Modeler',

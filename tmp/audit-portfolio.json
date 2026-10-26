@@ -1,0 +1,211 @@
+{
+  "counts": {
+    "BIM Automation": 13,
+    "Web Development": 8,
+    "Revit Projects": 14,
+    "Point Cloud / AutoCAD Plant 3D": 3
+  },
+  "missingAssets": [],
+  "duplicateIds": [],
+  "roles": [
+    {
+      "company": "MakerPath",
+      "period": "Jun 2025 — Present",
+      "projects": [
+        {
+          "id": "hoa-project-10",
+          "title": "OxiNote — Cross-Platform Note-Taking Application",
+          "context": "MakerPath"
+        }
+      ]
+    },
+    {
+      "company": "DCMvn",
+      "period": "Dec 2021 — Present",
+      "projects": [
+        {
+          "id": "hoa-project-34",
+          "title": "MEP Tool — Check Data from Family",
+          "context": "MEP tool collection"
+        },
+        {
+          "id": "hoa-project-35",
+          "title": "MEP Tool — Check Healthy Project",
+          "context": "MEP tool collection"
+        },
+        {
+          "id": "hoa-project-36",
+          "title": "MEP Tool — Create Cable Tray from CAD",
+          "context": "MEP tool collection"
+        },
+        {
+          "id": "hoa-project-37",
+          "title": "MEP Tool — Create Duct from CAD",
+          "context": "MEP tool collection"
+        },
+        {
+          "id": "hoa-project-38",
+          "title": "MEP Tool — Create Duct from IFC",
+          "context": "MEP tool collection"
+        },
+        {
+          "id": "hoa-project-39",
+          "title": "MEP Tool — Export Data from Family",
+          "context": "MEP tool collection"
+        },
+        {
+          "id": "hoa-project-40",
+          "title": "MEP Tool — Place Element from CAD",
+          "context": "MEP tool collection"
+        },
+        {
+          "id": "hoa-project-41",
+          "title": "MEP Tool — Sheet Manager",
+          "context": "MEP tool collection"
+        },
+        {
+          "id": "hoa-project-2",
+          "title": "MEP Tool — Up and Down",
+          "context": "Personal"
+        },
+        {
+          "id": "hoa-project-4",
+          "title": "MEP Tool — Place Family",
+          "context": "Personal"
+        },
+        {
+          "id": "hoa-project-5",
+          "title": "MEP Tool — Split Duct",
+          "context": "Personal"
+        },
+        {
+          "id": "hoa-project-6",
+          "title": "MEP Tool — Create Support",
+          "context": "Personal MEP tool collection"
+        },
+        {
+          "id": "hoa-project-7",
+          "title": "MEP Tool — QA",
+          "context": "Personal MEP tool collection"
+        },
+        {
+          "id": "hoa-project-15",
+          "title": "Munich Airport — Terminal 1 Expansion",
+          "context": "DCMvn"
+        },
+        {
+          "id": "hoa-project-16",
+          "title": "ZAM München",
+          "context": "DCMvn"
+        },
+        {
+          "id": "hoa-project-18",
+          "title": "Überseequartier — Residential Quarter",
+          "context": "DCMvn"
+        },
+        {
+          "id": "hoa-project-19",
+          "title": "Konzerthaus München — Concert Hall",
+          "context": "DCMvn"
+        },
+        {
+          "id": "hoa-project-22",
+          "title": "Munich Re",
+          "context": "DCMvn"
+        },
+        {
+          "id": "hoa-project-23",
+          "title": "EKB — Point Cloud / AutoCAD Plant 3D",
+          "context": "DCMvn"
+        },
+        {
+          "id": "hoa-project-33",
+          "title": "ABP MKK Bad Oeynhausen",
+          "context": "DCMvn"
+        },
+        {
+          "id": "hoa-project-42",
+          "title": "TuV Arena",
+          "context": "DCMvn"
+        },
+        {
+          "id": "hoa-project-43",
+          "title": "IBDH_SQ_FM",
+          "context": "DCMvn"
+        },
+        {
+          "id": "hoa-project-44",
+          "title": "Vienna Airport — FLUGHAFEN WIEN AKTIENGESELLSCHAFT",
+          "context": "DCMvn"
+        }
+      ]
+    },
+    {
+      "company": "MindX Technology School",
+      "period": "Jan 2024 — Dec 2024",
+      "projects": [
+        {
+          "id": "hoa-project-11",
+          "title": "E-Learning Platform",
+          "context": "E-Learning"
+        },
+        {
+          "id": "hoa-project-12",
+          "title": "Exclusive — E-Commerce Website",
+          "context": "Exclusive"
+        },
+        {
+          "id": "hoa-project-13",
+          "title": "EasySet — Flight Booking Website",
+          "context": "EasySet"
+        },
+        {
+          "id": "hoa-project-14",
+          "title": "Cinema Booking Website",
+          "context": "Cinema-Booking"
+        }
+      ]
+    },
+    {
+      "company": "ARMO Vietnam — Kajima Group",
+      "period": "Sep 2020 — Sep 2021",
+      "projects": []
+    },
+    {
+      "company": "CADIAN Vietnam — Takamiya Group",
+      "period": "Jan 2019 — Sep 2020",
+      "projects": []
+    }
+  ],
+  "externalLinks": [
+    "https://github.com/DinhHoaLe",
+    "https://gitlab.com/dinhhoa.0701",
+    "https://drive.google.com/drive/folders/10YL_ca2pBL43DaBqdEhgId2y6TGqs4BL?usp=drive_link",
+    "https://drive.google.com/drive/folders/1HOiVhryy_7RbgAgRFD5ik5Xpzh2ieN5f?usp=sharing",
+    "https://drive.google.com/file/d/1B1BLEvy26fcFZYF69W1uCthfV25ivkVQ/view?usp=drive_link",
+    "https://drive.google.com/file/d/1qriPw-hB06_mLrh7sFnLPzbu-xTWc1CC/view?usp=sharing",
+    "https://drive.google.com/file/d/1YnyerbfYISks-oCbvIvIkdtmboof_mv1/view?usp=drive_link",
+    "https://gitlab.com/dinhhoa.0701/mep-up-and-down-project",
+    "https://gitlab.com/dinhhoa.0701/mep-place-family-project",
+    "https://gitlab.com/dinhhoa.0701/mep-split-duct-project",
+    "https://gitlab.com/dinhhoa.0701/mep-create-support-project",
+    "https://gitlab.com/dinhhoa.0701/mep-QA-Family.git",
+    "https://github.com/DinhHoaLe/BuildSense-FE",
+    "https://buildsense-v7kn.onrender.com/map",
+    "https://github.com/DinhHoaLe/Digital-Twin-Airport-FE.git",
+    "https://github.com/DinhHoaLe/Digital-Twin-Airport-BE.git",
+    "https://digital-twin-vaa.vercel.app/map",
+    "https://github.com/DinhHoaLe/Edu-Learning-FE",
+    "https://github.com/DinhHoaLe/portfolio-e-learning",
+    "https://portfolio-e-learning.vercel.app/",
+    "https://github.com/DinhHoaLe/Ecommerce-system",
+    "https://exclusive-3h.netlify.app/",
+    "https://github.com/DinhHoaLe/Booking_Flight_GIS_FE",
+    "https://github.com/DinhHoaLe/Booking-Admin-FE-1",
+    "https://booking-fe-4rk8.onrender.com/",
+    "https://booking-admin-fe.onrender.com/",
+    "https://github.com/DinhHoaLe/Cinema-Booking-FE-User",
+    "https://github.com/DinhHoaLe/Cinema-Booking-FE-Admim",
+    "https://rfa.dcm-vn.com/login"
+  ]
+}
