@@ -303,6 +303,11 @@ export const links = [
   ['MindX Certificate','https://drive.google.com/file/d/1B1BLEvy26fcFZYF69W1uCthfV25ivkVQ/view?usp=drive_link','↗'],
   ['Revizto Certificate','https://drive.google.com/file/d/1qriPw-hB06_mLrh7sFnLPzbu-xTWc1CC/view?usp=sharing','↗'],
   ['BIMcollab Certificate','https://drive.google.com/file/d/1YnyerbfYISks-oCbvIvIkdtmboof_mv1/view?usp=drive_link','↗'],
+  ['Revit MEPF Certificate','https://drive.google.com/drive/folders/10YL_ca2pBL43DaBqdEhgId2y6TGqs4BL?usp=drive_link','↗', {
+    issuer:'BIM Express Company Limited',
+    issued:'2020-10-11', issuedLabel:'11 October 2020',
+    credentialId:'BIM2020/RVT-E/243', folder:true,
+  }],
 ];
 export const references = [['DCMvn','https://dcmvn.com/'],['CADIAN','https://cadian.vn/'],['ARMO','https://acteng.com.vn/']];
 
