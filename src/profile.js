@@ -23,6 +23,7 @@ export const education = [
   ['2023–2025',"Information Technology — Bachelor’s Degree",'HCMC University of Information Technology'],
   ['2014–2018',"Industrial Electricity — Bachelor’s Degree",'HCMC University of Industry and Trade'],
   ['2024–2025','Full-stack MERN — Graduation Certificate','MindX Technology School'],
+  ['2020','Revit MEPF — Certificate of Completion','BIM Express Company Limited','Issued 11 October 2020 · Registration No. BIM2020/RVT-E/243'],
   ['2024–2025','Certifications & Honors','MindX Web Full-stack · Revizto · BIMcollab','Three-time First Prize winner at MindX Battle Code: Basic (HTML/CSS), ReactJS, and Node.js.'],
 ];
 export const experience = [
@@ -303,10 +304,10 @@ export const links = [
   ['MindX Certificate','https://drive.google.com/file/d/1B1BLEvy26fcFZYF69W1uCthfV25ivkVQ/view?usp=drive_link','↗'],
   ['Revizto Certificate','https://drive.google.com/file/d/1qriPw-hB06_mLrh7sFnLPzbu-xTWc1CC/view?usp=sharing','↗'],
   ['BIMcollab Certificate','https://drive.google.com/file/d/1YnyerbfYISks-oCbvIvIkdtmboof_mv1/view?usp=drive_link','↗'],
-  ['Revit MEPF Certificate','https://drive.google.com/drive/folders/10YL_ca2pBL43DaBqdEhgId2y6TGqs4BL?usp=drive_link','↗', {
+  ['Revit MEPF Certificate','https://drive.google.com/file/d/15gsG5vCmOoDl8E4-ivkZLlluoG2iZe54/view?usp=sharing','↗', {
     issuer:'BIM Express Company Limited',
     issued:'2020-10-11', issuedLabel:'11 October 2020',
-    credentialId:'BIM2020/RVT-E/243', folder:true,
+    credentialId:'BIM2020/RVT-E/243', folder:false,
   }],
 ];
 export const references = [['DCMvn','https://dcmvn.com/'],['CADIAN','https://cadian.vn/'],['ARMO','https://acteng.com.vn/']];

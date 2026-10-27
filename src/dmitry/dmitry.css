@@ -365,7 +365,7 @@ img { display: block; max-width: 100%; }
 .dp-prize-grid h4 { font-size: 21px; font-weight: 300; margin: 23px 0 0; max-width: 75%; }
 .dp-prize-grid b { position: absolute; right: 20px; bottom: 19px; color: #e9bc68; font-size: 46px; font-weight: 300; letter-spacing: -.04em; }
 .dp-prize-grid b span { font-size: 14px; vertical-align: super; }
-.dp-certification-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 25px; }
+.dp-certification-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; margin-top: 25px; }
 .dp-certification-grid a { border: 1px solid #333c49; background: linear-gradient(140deg,#121c28,#090c11); padding: 28px; text-decoration: none; }
 .dp-certificate-number { color: #809ab7; letter-spacing: .08em; font-size: 10px; }
 .dp-certification-grid h3 { margin: 30px 0; font-size: 26px; font-weight: 300; }
