@@ -1,4 +1,6 @@
 import { toolDescriptions } from './toolDescriptions';
+import { revitMcpCaseStudies } from './revitMcpScenarios';
+import { plannedAddins } from './plannedAddins';
 // Project facts and responsibilities from Le-Dinh-Hoa-SD.pdf (pages 2–10).
 const gitlab = path => [['Source code', `https://gitlab.com/dinhhoa.0701/${path}`]];
 const github = path => `https://github.com/DinhHoaLe/${path}`;
@@ -10,6 +12,8 @@ const webResponsibilities = [
 const personal = { customer:'Personal', period:'2025', role:'Developer', team:'1 developer' };
 const fullstack = { role:'Full-Stack Developer', team:'3 members' };
 export const projectDetails = {
+  ...plannedAddins,
+  ...revitMcpCaseStudies,
   'hoa-project-52': {
     title: 'MEP Tool — Check Clash',
     description: 'Check clashes between MEP elements in Revit.',
@@ -329,7 +333,7 @@ for (const [id, description] of Object.entries(toolDescriptions)) {
 export function getProjectDetail(project) {
   const detail = projectDetails[project.id];
   if (detail) return project.textCard
-    ? {...project, ...detail, image:null, modelImage:undefined, modelGallery:undefined, previewImage:undefined, links:[]}
+    ? {...project, ...detail, image:null, modelImage:undefined, modelGallery:undefined, previewImage:undefined, links:project.companyCard || project.projectType === 'Training' ? [] : detail.links || []}
     : { ...project, ...detail };
   const isCadian = project.context.startsWith('CADIAN');
   const isArmo = project.context.startsWith('ARMO');

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AllProjects } from './Dmitry';
+import FeaturedProjects from './FeaturedProjects';
 
 export default function ProjectsPage() {
   const [menu, setMenu] = useState(false);
@@ -12,7 +13,8 @@ export default function ProjectsPage() {
     </header>
     <main className="dp-section" id="main">
       <div className="dp-section-head"><h2>All Projects<span>/</span></h2><div className="dp-section-meta"><span>—— PROJECT DIRECTORY ——</span><a className="dp-text-link" href="/#projects">Show selected work ⟶</a></div></div>
-      <AllProjects/>
+      <FeaturedProjects/>
+      <div id="project-directory"><AllProjects/></div>
     </main>
   </div>;
 }

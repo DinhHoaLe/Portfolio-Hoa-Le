@@ -7,7 +7,7 @@ export const profile = {
   portrait: '/profile/edited/portrait-professional.png', resume: '/profile/Hoa-Dinh-Le-SD.docx',
   github: 'https://github.com/DinhHoaLe', gitlab: 'https://gitlab.com/dinhhoa.0701',
   intro: 'Revit add-ins, BIM automation, and full-stack applications — built on practical MEP engineering experience.',
-  summary: 'My career goal is to become a BIM Automation and AI Engineer, specializing in Revit API development, intelligent workflow automation, and AI-driven engineering solutions for the AEC industry. I aim to build tools that automate repetitive MEP tasks, validate BIM models, extract and analyze engineering data, and connect BIM environments with web-based platforms. By combining my MEP engineering knowledge with C#/.NET, full-stack development, and AI technologies, I strive to create practical solutions that improve design accuracy, coordination, and productivity across the building lifecycle.',
+  summary: 'My goal is to grow as a BIM Automation and AI Engineer, building intelligent tools that connect engineering knowledge, Revit, and web-based platforms. Drawing on my MEP engineering and software development experience, I aim to advance my work in Revit API development, MCP integration, and AI-assisted BIM workflows. I want to turn repetitive modeling, model validation, and engineering data analysis into practical, reliable solutions that improve design accuracy, coordination, and productivity across the building lifecycle.',
 };
 export const skills = [
   ['Revit Add-in Development',['C#','.NET','Revit API','Revit SDK','WPF','Python']],
@@ -137,6 +137,22 @@ const oxiNoteIndex = projects.findIndex(project=>project.id==='hoa-project-10');
 const [oxiNote] = projects.splice(oxiNoteIndex,1);
 projects.splice(projects.findIndex(project=>project.id==='hoa-project-8'),0,oxiNote);
 projects.splice(0,0,...[
+  ...['54','55','56','57','58','61'].map(number=>({
+    ...projectDetails[`hoa-project-${number}`],
+    id:`hoa-project-${number}`, number, category:'Revit & AI',
+    context:'Personal Revit & AI project', projectType:'Personal',
+    textCard:true, image:null, stats:'Revit & AI',
+    cardCategory:'REVIT & AI', cardFooter:'AI-ASSISTED BIM WORKFLOW',
+    cardCredit:'Personal project · Demo coming soon',
+  })),
+  ...['59','60'].map(number=>({
+    ...projectDetails[`hoa-project-${number}`],
+    id:`hoa-project-${number}`, number, category:'BIM Automation',
+    context:'Personal prototype concept', projectType:'Prototype',
+    textCard:false, image:'/profile/edited/addin-symbol-sheet-v5.png', stats:'BIM Automation',
+    cardCategory:'REVIT ADD-IN', cardFooter:'PLANNED PROTOTYPE',
+    cardCredit:'Implementation pending',
+  })),
   {
     id: 'hoa-project-52', number: '52',
     title: 'MEP Tool — Check Clash',
