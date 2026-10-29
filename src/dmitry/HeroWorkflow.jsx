@@ -1,22 +1,12 @@
-import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './heroWorkflow.css';
-const MepModel3D=lazy(()=>import('./MepModel3D'));
-
-function WebDashboard(){
-  return <div className="hw-dashboard">
-    <div className="hw-pane-heading">WEB APPLICATION</div>
-    <div className="hw-dashboard-window">
-      <div className="hw-dashboard-bar"><span className="hw-window-dots" aria-hidden="true"><i/><i/><i/></span><span>Engineering Dashboard</span><span className="hw-dashboard-demo">DEMO</span></div>
-      <div className="hw-dashboard-content"><div className="hw-dashboard-title"><strong>Building systems</strong><span>Model data</span></div>
-        <div className="hw-dashboard-stats"><div><span>Systems</span><b>03</b></div><div><span>Pumps</span><b>03</b></div><div><span>Model</span><b>MEP</b></div></div>
-        <div className="hw-dashboard-bottom"><div className="hw-dashboard-systems"><span><i/>HVAC</span><span><i/>Piping</span><span><i/>Electrical</span></div><svg viewBox="0 0 120 40" role="img" aria-label="Illustrative model data chart"><path d="M0 35H120M0 20H120M0 5H120" fill="none" stroke="#e2e8ee"/><path d="M2 32L20 29L35 30L52 19L68 22L85 10L100 13L118 5L118 38H2Z" fill="#e7eff8"/><path d="M2 32L20 29L35 30L52 19L68 22L85 10L100 13L118 5" fill="none" stroke="#377cb8" strokeWidth="2"/></svg></div>
-      </div>
-      <div className="hw-dashboard-foot">MODEL → DATA → WEB <span>Illustrative data</span></div>
-    </div>
-    <div className="hw-web-wire" aria-hidden="true"><span>Data API</span><i/></div>
+function WebDashboard() {
+  return <div className="hw-web-preview" aria-label="Illustrative web dashboard">
+    <div className="hw-web-preview-bar"><span className="hw-window-dots" aria-hidden="true"><i/><i/><i/></span><span>Engineering Dashboard</span><span className="hw-web-preview-label">WEB UI</span></div>
+    <div className="hw-web-preview-body"><div className="hw-web-metrics"><div><span>Systems</span><b>03</b></div><div><span>Pumps</span><b>03</b></div><div><span>Model</span><b>MEP</b></div></div><div className="hw-web-chart"><span>Model insights</span><svg viewBox="0 0 120 36" aria-hidden="true"><path d="M1 30H119M1 15H119" fill="none" stroke="#e4eaf0"/><path d="M2 29 20 25 36 27 52 17 68 20 85 10 100 13 118 4V35H2Z" fill="#e8f0f8"/><path d="M2 29 20 25 36 27 52 17 68 20 85 10 100 13 118 4" fill="none" stroke="#377cb8" strokeWidth="1.8"/></svg></div></div>
+    <div className="hw-web-preview-foot"><span>MODEL → DATA → WEB</span><span>Illustrative data</span></div>
   </div>;
 }
-
 export const WORKFLOW_CODE = `using var tx = new Transaction(
     doc, "Create MEP");
 
@@ -47,11 +37,44 @@ function ColoredCode({ text }) {
 
 export default function HeroWorkflow() {
   const root = useRef(null);
+  const [revitLink, setRevitLink] = useState(null);
   const [elapsed, setElapsed] = useState(0);
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(false);
   const [reduced, setReduced] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
+
+  useEffect(() => {
+    const grid = root.current.querySelector('.hw-grid');
+    const model = grid.querySelector('.hw-model img');
+    const code = grid.querySelector('.hw-code-window');
+    const ai = grid.querySelector('.hw-ai-window');
+    let active = true;
+    const syncLink = () => {
+      if (!active) return;
+      const bounds = grid.getBoundingClientRect();
+      const image = model.getBoundingClientRect();
+      const window = code.getBoundingClientRect();
+      const assistant = ai.getBoundingClientRect();
+      const ratio = (model.naturalWidth || 1016) / (model.naturalHeight || 1040);
+      const imageWidth = Math.min(image.width, image.height * ratio);
+      const imageHeight = Math.min(image.height, image.width / ratio);
+      const targetX = image.left - bounds.left + image.width / 2 + imageWidth * .35;
+      const targetY = image.top - bounds.top + (image.height - imageHeight) / 2 + imageHeight * .68;
+      const startX = window.left - bounds.left;
+      const startY = window.top - bounds.top + window.height * .5;
+      const bendX = targetX + (startX - targetX) * .52;
+      const aiX = assistant.left - bounds.left;
+      const aiY = assistant.top - bounds.top + assistant.height * .5;
+      setRevitLink({width:bounds.width,height:bounds.height,path:`M ${startX} ${startY} H ${bendX} V ${targetY} H ${targetX}`,labelX:(bendX + startX) / 2,labelY:startY - 11,mcpPath:`M ${aiX} ${aiY} H ${targetX}`,mcpLabelX:(targetX + aiX) / 2,mcpLabelY:aiY - 11});
+    };
+    const observer = new ResizeObserver(syncLink);
+    [grid, model, code, ai].forEach(element => observer.observe(element));
+    model.addEventListener('load', syncLink);
+    document.fonts.ready.then(syncLink);
+    syncLink();
+    return () => { active = false; observer.disconnect(); model.removeEventListener('load', syncLink); };
+  }, []);
 
   useEffect(() => {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -90,7 +113,9 @@ export default function HeroWorkflow() {
         </div>
       </div>
       <div className="hw-wire hw-wire-code" aria-hidden="true"><span className="hw-wire-label">Revit API</span><i className="hw-travel-dot"/></div>
-      <div className="hw-model-column"><WebDashboard/><div className="hw-model"><Suspense fallback={<img className="hw-model-fallback" src="/profile/edited/revit-mep-model-cutout.webp" alt="Loading illustrative MEP model"/>}><MepModel3D running={running} phase={frame.phase}/></Suspense><span>INTERACTIVE MEP MODEL <small>Original 3D illustration</small></span></div></div>
+      {revitLink && <svg className="hw-revit-connector" viewBox={`0 0 ${revitLink.width} ${revitLink.height}`} aria-hidden="true"><defs><marker id="hw-revit-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#7797b7" strokeWidth="1.2"/></marker></defs><path className="hw-revit-route" d={revitLink.path} markerEnd="url(#hw-revit-arrow)"/><circle className="hw-revit-signal" r="2.5" style={{offsetPath:`path('${revitLink.path}')`}}/><text x={revitLink.labelX} y={revitLink.labelY} textAnchor="middle">Revit API</text><path className="hw-revit-route" d={revitLink.mcpPath} markerEnd="url(#hw-revit-arrow)"/><circle className="hw-revit-signal hw-mcp-signal" r="2.5" style={{offsetPath:`path('${revitLink.mcpPath}')`}}/><text x={revitLink.mcpLabelX} y={revitLink.mcpLabelY} textAnchor="middle">MCP</text></svg>}
+      <div className="hw-code-ui-link" aria-label="Code exchanges data with the web dashboard"><span>Web API</span><i/></div>
+      <div className="hw-model-column"><div className="hw-model"><img src="/profile/edited/revit-mep-model-cutout.webp" alt="Revit MEP model illustration with ductwork, blue piping and mechanical equipment" fetchPriority="high"/><span>REVIT MODEL</span></div><div className="hw-model-web-link" aria-label="Model and dashboard exchange data through a database"><span>Database</span><i aria-hidden="true"/></div><WebDashboard/></div>
       <div className="hw-wire hw-wire-ai" aria-hidden="true"><span className="hw-wire-label">MCP</span><i className="hw-travel-dot"/></div>
       <div className="hw-pane hw-ai-pane" aria-hidden="true">
         <div className="hw-pane-heading">AI-ASSISTED WORKFLOWS</div>
