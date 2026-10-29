@@ -21,10 +21,15 @@ Object.assign(icons, {'Revit API':'revit-api', 'Word':'microsoft-word', 'PowerPo
 const toolsFor = name => skills.find(([group]) => group === name)?.[1] || [];
 const withIcons = labels => [...new Set(labels)].map(label => [label, icons[label] || null]);
 export const toolGroups = [
-  ['Revit Add-in Development', withIcons(['Revit API', ...toolsFor('Revit Add-in Development').filter(label => label !== 'Revit SDK'), 'Dynamo', 'Add-ins Manager'])],
+  ['Revit Automation', withIcons(['C#','.NET','Revit API','WPF','Python'])],
+  ['BIM / MEP', withIcons(['Revit','AutoCAD','Navisworks','Revizto','BIMcollab'])],
+  ['Web / Data', withIcons(['React','Node.js','TypeScript','JavaScript','MongoDB','PostgreSQL'])],
+];
+export const supportingToolGroups = [
+  ['Revit Utilities', withIcons(['Dynamo','Add-ins Manager'])],
   ['Development & Deployment', withIcons(['Git', 'GitHub', 'GitLab', 'Visual Studio', 'VS Code', 'Render', 'Vercel', 'Netlify'])],
-  ['BIM / Coordination', withIcons([...toolsFor('BIM / Coordination'), 'ACC'])],
-  ['Web / Data', withIcons([...toolsFor('Web / Data'), 'Tailwind CSS', 'Three.js'])],
+  ['BIM Platforms', withIcons(['AutoCAD Plant 3D','ACC'])],
+  ['Web Tools', withIcons(['Next.js','Tailwind CSS','Three.js'])],
   ['Office', withIcons(toolsFor('Language & Office').filter(label => label !== 'English'))],
   ['Standards', [['ISO 19650','iso19650'],['VDI 2552','vdi2552'],['BCF','bcf'],['IFC','ifc'],['LOI','loi']]],
   ['Design', [['Figma','figma'], ['Photoshop','adobe-photoshop'], ['Stitch',icons.Stitch]]],

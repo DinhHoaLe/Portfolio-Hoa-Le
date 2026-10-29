@@ -1,3 +1,4 @@
+import PortfolioLink from '../PortfolioLink.jsx';
 import React from 'react';
 import ProjectArtwork from './ProjectArtwork';
 
@@ -16,11 +17,11 @@ const featured = [
 export default function FeaturedProjects() {
   return <section className="dp-featured-projects" aria-labelledby="featured-projects-title">
     <div className="dp-featured-heading"><div><p className="dp-eyebrow">A CLOSER LOOK AT MY WORK</p><h3 id="featured-projects-title">Three Featured Projects<span>/</span></h3></div><p>Engineering knowledge.<br/>Software development.<br/>AI-assisted workflows.</p></div>
-    <div className="dp-featured-grid">{featured.map((project,i)=><a key={project.id} className="dp-featured-card" href={`/projects/${project.id}`}>
+    <div className="dp-featured-grid">{featured.map((project,i)=><PortfolioLink key={project.id} className="dp-featured-card" href={`/projects/${project.id}`}>
       <div className="dp-featured-topline"><span>FEATURED / 0{i+1}</span><span aria-hidden="true">↗</span></div>
       <div className="dp-featured-art">{i===2 ? <div className="dp-featured-ai-flow" aria-label="AI to MCP to Revit"><b>AI</b><span>→</span><b>MCP</b><span>→</span><b>REVIT</b><small>CAD INPUT → NATIVE PIPES</small></div> : <ProjectArtwork projectId={project.id} src={i===0 ? '/profile/edited/addin-symbol-sheet.png' : '/profile/symbols/aerotwin.svg'} alt={`${project.name} project symbol`}/>}</div>
       <div className="dp-featured-copy"><p className="dp-featured-focus">{project.focus}</p><h4>{project.name}</h4><p>{project.summary}</p><p className="dp-featured-angle">{project.angle}</p><span className="dp-featured-cta">Explore project <span aria-hidden="true">↗</span></span></div>
-    </a>)}</div>
-    <a className="dp-featured-browse" href="#project-directory">Browse the complete project directory ↓</a>
+    </PortfolioLink>)}</div>
+    <PortfolioLink className="dp-featured-browse" href="#project-directory">Browse the complete project directory ↓</PortfolioLink>
   </section>;
 }

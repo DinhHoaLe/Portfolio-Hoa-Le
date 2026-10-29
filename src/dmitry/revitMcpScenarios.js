@@ -131,7 +131,6 @@ export const revitMcpCaseStudies = Object.fromEntries(applicationCases.map(item=
     scopeNote:'A personal development project applying AI and MCP to practical Revit workflows. A recorded demonstration and implementation results will be added later.',
     sections:[],
     toolContent:[
-      {title:'Project Scope',paragraphs:[item.description]},
       {title:'Input & Setup',paragraphs:[item.test.input]},
       {title:'Example AI Request',paragraphs:[item.test.prompt]},
       {title:'Workflow',paragraphs:[item.test.steps]},

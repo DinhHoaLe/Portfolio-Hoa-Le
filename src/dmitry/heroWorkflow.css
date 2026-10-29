@@ -220,22 +220,67 @@
   position:absolute;
   z-index:-1;
   inset:-145px calc(-1 * var(--dp-gutter)) -40px calc(clamp(28px,4vw,64px) / -2);
-  background:linear-gradient(135deg,#f0f3f5,#e9eef2);
-  border-left:1px solid #d5dde3;
+  background:#faf8f5;
+  border-left:1px solid #e2ded7;
   pointer-events:none;
 }
-.dp-hero-workflow .hw-model-web-link > span { background:#edf1f4; }
-.dp-hero-workflow .hw-revit-connector text { stroke:#edf1f4; }
-.dp-hero-workflow .hw-footer { border-color:#d3dce3; }
+.dp-hero-workflow .hw-model-web-link > span { background:#faf8f5; }
+.dp-hero-workflow .hw-revit-connector text { stroke:#faf8f5; }
+.dp-hero-workflow .hw-footer { border-color:#e2ded7; }
 @media(max-width:1100px) {
   .dp-hero.dp-hero-ai > .dp-hero-workflow { padding-top:30px; }
   .dp-hero.dp-hero-ai > .dp-hero-workflow::before {
     inset:0 calc(-1 * var(--dp-gutter)) -40px;
     border-left:0;
-    border-top:1px solid #d5dde3;
+    border-top:1px solid #e2ded7;
   }
 }
 @media(max-width:760px) {
   .dp-hero.dp-hero-ai > .dp-hero-workflow::before { inset:0 -22px -30px; }
-  .dp-hero-workflow .hw-wire-label { background:#edf1f4; }
+  .dp-hero-workflow .hw-wire-label { background:#faf8f5; }
 }
+/* Split hero: the personal introduction uses the supplied binary texture. */
+.dp-site .dp-hero.dp-hero-ai {
+  background-color:#03070b;
+  background-image:linear-gradient(90deg,#02060955,#02060988),url('/profile/edited/hero-binary-background.png');
+  background-size:100% 100%,auto 900px;
+  background-position:left top;
+  background-repeat:no-repeat;
+}
+.dp-hero.dp-hero-ai > .dp-hero-title { color:#faf8f5; }
+.dp-hero.dp-hero-ai > .dp-hero-title .dp-hero-specialties { color:#bac6ce; }
+.dp-hero.dp-hero-ai > .dp-hero-title .dp-hero-projects { background:#faf8f5; border-color:#faf8f5; color:#17191c; }
+.dp-hero.dp-hero-ai > .dp-hero-title .dp-hero-projects:hover { background:#e6ecef; border-color:#e6ecef; color:#17191c; }
+.dp-hero.dp-hero-ai > .dp-hero-title .dp-hero-projects:focus-visible { outline:2px solid #faf8f5; outline-offset:5px; }
+@media(min-width:1101px) {
+  .dp-header.dp-header-split { color:#fff; background:transparent; mix-blend-mode:difference; }
+  .dp-header.dp-header-split > a img { filter:brightness(0) invert(1); }
+}
+@media(max-width:1100px) {
+  .dp-hero.dp-hero-ai > .dp-hero-title { padding-bottom:12px; }
+  .dp-header.dp-header-split { background:#03070bf5; color:#faf8f5; }
+  .dp-header.dp-header-split > a img { filter:brightness(0) invert(1); }
+  .dp-header.dp-header-split .dp-menu-button { background:#faf8f5; color:#17191c; }
+  .dp-header.dp-header-split .dp-main-nav.open { background:#10171d; color:#faf8f5; border-color:#36434d; }
+}
+/* Readable workflow windows; keep the model as the main visual. */
+@media(min-width:761px) {
+  .dp-hero-workflow .hw-grid { grid-template-columns:minmax(0,1.35fr) 56px minmax(0,1fr); }
+}
+.dp-hero-workflow .hw-code { height:230px; font-size:12px; line-height:1.65; padding:12px 10px; white-space:pre; overflow:auto; }
+.dp-hero-workflow .hw-window-bar { min-height:32px; font-size:10px; padding:7px 10px; }
+.dp-hero-workflow .hw-code-footer { font-size:10px; padding:7px 10px; }
+.dp-hero-workflow .hw-pane-heading { font-size:10px; line-height:1.6; }
+.dp-hero-workflow .hw-ai-content { padding:12px; }
+.dp-hero-workflow .hw-prompt { min-height:65px; font-size:12px; line-height:1.6; padding:9px; }
+.dp-hero-workflow .hw-ai-status { font-size:10px; line-height:1.6; }
+.dp-hero-workflow .hw-ai-mark { width:28px; height:28px; font-size:16px; }
+@media(max-width:760px) { .dp-hero-workflow .hw-pane { max-width:340px; } }
+.dp-hero-workflow .hw-web-preview-bar { font-size:10px; }
+.dp-hero-workflow .hw-web-preview-label { font-size:8px; }
+.dp-hero-workflow .hw-web-metrics span { font-size:9px; }
+.dp-hero-workflow .hw-web-metrics b { font-size:16px; }
+.dp-hero-workflow .hw-web-chart > span { font-size:8px; }
+.dp-hero-workflow .hw-web-preview-foot { font-size:8px; }
+.dp-hero-workflow .hw-revit-connector text { font-size:10px; }
+.dp-hero-workflow .hw-code-ui-link > span,.dp-hero-workflow .hw-model-web-link > span,.dp-hero-workflow .hw-footer { font-size:10px; }

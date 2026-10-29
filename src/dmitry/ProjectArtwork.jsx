@@ -18,11 +18,11 @@ export const addinSymbols = {
 };
 
 const webLogos = {
-  'hoa-project-8': {image:'buildsense-logo.png'},
-  'hoa-project-9': {image:'digital-twin-preview.png',width:2552,x:918,y:46,w:190,h:62},
-  'hoa-project-11': {image:'elearning-preview.png',width:1278,x:20,y:20,w:94,h:38},
-  'hoa-project-12': {image:'exclusive-preview.png',width:1278,x:14,y:61,w:104,h:31},
-  'hoa-project-13': {image:'easyset-preview.png',width:2560,x:658,y:5,w:96,h:77},
+  'hoa-project-8': '/profile/edited/buildsense-logo.png',
+  'hoa-project-9': '/profile/logos/aerotwin.png',
+  'hoa-project-11': '/profile/logos/udemy.png',
+  'hoa-project-12': '/profile/logos/exclusive.png',
+  'hoa-project-13': '/profile/logos/easyset.png',
 };
 const webNames = {'hoa-project-10':'OxiNote','hoa-project-14':'Cinema Booking','hoa-project-27':'Revit Family Library'};
 
@@ -36,7 +36,7 @@ export default function ProjectArtwork({projectId, src, alt, className = ''}) {
   if (src?.startsWith('/profile/symbols/')) {
     const logo = webLogos[projectId];
     return <div className={`dp-web-logo ${className}`} role="img" aria-label={`${alt} — project logo`}>
-      {logo?.width ? <div className="dp-web-logo-crop" style={{aspectRatio:`${logo.w} / ${logo.h}`}}><img src={`/profile/edited/${logo.image}`} alt="" style={{width:`${logo.width / logo.w * 100}%`,left:`${-logo.x / logo.w * 100}%`,top:`${-logo.y / logo.h * 100}%`}}/></div> : logo ? <img className="dp-web-logo-original" src={`/profile/edited/${logo.image}`} alt=""/> : <span>{webNames[projectId]}</span>}
+      {logo ? <img className="dp-web-logo-original" src={logo} alt="" loading="lazy"/> : <span>{webNames[projectId]}</span>}
     </div>;
   }
   const region = addinSymbols[projectId];

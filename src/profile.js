@@ -165,7 +165,7 @@ projects.splice(0,0,...[
   {
     "id": "hoa-project-34",
     "number": "34",
-    "title": "MEP Tool — Check Data from Family",
+    "title": "Family Data Studio",
     "description": "Review data from Revit families.",
     "folderName": "MEP_Check_Data_From_Family_ver1",
     "tools": [

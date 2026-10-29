@@ -407,6 +407,7 @@ export const toolDescriptions = {
     ]
   },
   "hoa-project-34": {
+    "title": "Family Data Studio",
     "description": "Family Data Studio analyzes Revit family files, exports their data to JSON, and supports parameter transfer into the currently open family.",
     "role": "Revit Add-in Developer",
     "customer": "MEP tool collection",

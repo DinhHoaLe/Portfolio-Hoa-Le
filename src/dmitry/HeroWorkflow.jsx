@@ -7,15 +7,13 @@ function WebDashboard() {
     <div className="hw-web-preview-foot"><span>MODEL → DATA → WEB</span><span>Illustrative data</span></div>
   </div>;
 }
-export const WORKFLOW_CODE = `using var tx = new Transaction(
-    doc, "Create MEP");
-
+export const WORKFLOW_CODE = `using var tx =
+    new Transaction(doc,
+        "Create MEP");
 tx.Start();
-
-Pipe.Create(doc,
-    systemId, typeId, levelId,
-    start, end);
-
+Pipe.Create(
+    doc, systemId, typeId,
+    levelId, start, end);
 tx.Commit();`;
 export const WORKFLOW_PROMPT = 'Create MEP elements from the approved layout.';
 export const WORKFLOW_DURATION = 16000;
@@ -49,13 +47,20 @@ export default function HeroWorkflow() {
     const model = grid.querySelector('.hw-model img');
     const code = grid.querySelector('.hw-code-window');
     const ai = grid.querySelector('.hw-ai-window');
+    const dashboard = grid.querySelector('.hw-web-preview');
     let active = true;
     const syncLink = () => {
-      if (!active) return;
+      if (!active || !model.isConnected || !code.isConnected || !ai.isConnected || !dashboard.isConnected) return;
       const bounds = grid.getBoundingClientRect();
       const image = model.getBoundingClientRect();
       const window = code.getBoundingClientRect();
       const assistant = ai.getBoundingClientRect();
+      const web = dashboard.getBoundingClientRect();
+      const webX = web.right - bounds.left + 8;
+      const webY = web.top - bounds.top + web.height * .5;
+      const codeX = window.left - bounds.left - 8;
+      const codeY = window.top - bounds.top + window.height * .78;
+      const webBend = (webX + codeX) / 2;
       const ratio = (model.naturalWidth || 1016) / (model.naturalHeight || 1040);
       const imageWidth = Math.min(image.width, image.height * ratio);
       const imageHeight = Math.min(image.height, image.width / ratio);
@@ -66,10 +71,10 @@ export default function HeroWorkflow() {
       const bendX = targetX + (startX - targetX) * .52;
       const aiX = assistant.left - bounds.left;
       const aiY = assistant.top - bounds.top + assistant.height * .5;
-      setRevitLink({width:bounds.width,height:bounds.height,path:`M ${startX} ${startY} H ${bendX} V ${targetY} H ${targetX}`,labelX:(bendX + startX) / 2,labelY:startY - 11,mcpPath:`M ${aiX} ${aiY} H ${targetX}`,mcpLabelX:(targetX + aiX) / 2,mcpLabelY:aiY - 11});
+      setRevitLink({webPath:`M ${webX} ${webY} H ${webBend} V ${codeY} H ${codeX}`,webLabelX:webBend,webLabelY:Math.max(webY,codeY) + 20,width:bounds.width,height:bounds.height,path:`M ${startX} ${startY} H ${bendX} V ${targetY} H ${targetX}`,labelX:(bendX + startX) / 2,labelY:startY - 11,mcpPath:`M ${aiX} ${aiY} H ${targetX}`,mcpLabelX:(targetX + aiX) / 2,mcpLabelY:aiY - 11});
     };
     const observer = new ResizeObserver(syncLink);
-    [grid, model, code, ai].forEach(element => observer.observe(element));
+    [grid, model, code, ai, dashboard].forEach(element => observer.observe(element));
     model.addEventListener('load', syncLink);
     document.fonts.ready.then(syncLink);
     syncLink();
@@ -113,8 +118,7 @@ export default function HeroWorkflow() {
         </div>
       </div>
       <div className="hw-wire hw-wire-code" aria-hidden="true"><span className="hw-wire-label">Revit API</span><i className="hw-travel-dot"/></div>
-      {revitLink && <svg className="hw-revit-connector" viewBox={`0 0 ${revitLink.width} ${revitLink.height}`} aria-hidden="true"><defs><marker id="hw-revit-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#7797b7" strokeWidth="1.2"/></marker></defs><path className="hw-revit-route" d={revitLink.path} markerEnd="url(#hw-revit-arrow)"/><circle className="hw-revit-signal" r="2.5" style={{offsetPath:`path('${revitLink.path}')`}}/><text x={revitLink.labelX} y={revitLink.labelY} textAnchor="middle">Revit API</text><path className="hw-revit-route" d={revitLink.mcpPath} markerEnd="url(#hw-revit-arrow)"/><circle className="hw-revit-signal hw-mcp-signal" r="2.5" style={{offsetPath:`path('${revitLink.mcpPath}')`}}/><text x={revitLink.mcpLabelX} y={revitLink.mcpLabelY} textAnchor="middle">MCP</text></svg>}
-      <div className="hw-code-ui-link" aria-label="Code exchanges data with the web dashboard"><span>Web API</span><i/></div>
+      {revitLink && <svg className="hw-revit-connector" viewBox={`0 0 ${revitLink.width} ${revitLink.height}`} aria-hidden="true"><defs><marker id="hw-revit-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#7797b7" strokeWidth="1.2"/></marker><marker id="hw-web-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#7797b7" strokeWidth="1.2"/></marker></defs><path className="hw-revit-route" d={revitLink.path} markerEnd="url(#hw-revit-arrow)"/><circle className="hw-revit-signal" r="2.5" style={{offsetPath:`path('${revitLink.path}')`}}/><text x={revitLink.labelX} y={revitLink.labelY} textAnchor="middle">Revit API</text><path className="hw-revit-route" d={revitLink.mcpPath} markerEnd="url(#hw-revit-arrow)"/><circle className="hw-revit-signal hw-mcp-signal" r="2.5" style={{offsetPath:`path('${revitLink.mcpPath}')`}}/><path className="hw-revit-route" d={revitLink.webPath} markerStart="url(#hw-web-arrow)" markerEnd="url(#hw-revit-arrow)"/><text x={revitLink.webLabelX} y={revitLink.webLabelY} textAnchor="middle">Web API</text><text x={revitLink.mcpLabelX} y={revitLink.mcpLabelY} textAnchor="middle">MCP</text></svg>}
       <div className="hw-model-column"><div className="hw-model"><img src="/profile/edited/revit-mep-model-cutout.webp" alt="Revit MEP model illustration with ductwork, blue piping and mechanical equipment" fetchPriority="high"/><span>REVIT MODEL</span></div><div className="hw-model-web-link" aria-label="Model and dashboard exchange data through a database"><span>Database</span><i aria-hidden="true"/></div><WebDashboard/></div>
       <div className="hw-wire hw-wire-ai" aria-hidden="true"><span className="hw-wire-label">MCP</span><i className="hw-travel-dot"/></div>
       <div className="hw-pane hw-ai-pane" aria-hidden="true">
