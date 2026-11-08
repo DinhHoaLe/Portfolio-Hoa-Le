@@ -9,6 +9,7 @@ export function projectPath(id) {
   return '/projects/' + entry[1] + (duplicate ? '-' + id.replace('hoa-project-', '') : '');
 }
 export function projectId(path) {
+  if (path === '/projects/mep-coordination-and-routing-platform') return 'hoa-project-60';
   return projects.find(project => projectPath(project.id) === path || '/projects/' + project.id === path)?.id;
 }
 export function canonicalProjectPath(path) {

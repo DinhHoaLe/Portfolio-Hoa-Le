@@ -148,10 +148,10 @@ projects.splice(0,0,...[
   ...['59','60'].map(number=>({
     ...projectDetails[`hoa-project-${number}`],
     id:`hoa-project-${number}`, number, category:'BIM Automation',
-    context:'Personal prototype concept', projectType:'Prototype',
+    context:number==='60' ? 'Personal Revit add-in project' : 'Personal prototype concept', projectType:number==='60' ? 'Personal' : 'Prototype',
     textCard:false, image:'/profile/edited/addin-symbol-sheet-v5.png', stats:'BIM Automation',
-    cardCategory:'REVIT ADD-IN', cardFooter:'PLANNED PROTOTYPE',
-    cardCredit:'Implementation pending',
+    cardCategory:'REVIT ADD-IN', cardFooter:number==='60' ? 'LIVE CLASH MONITOR' : 'PLANNED PROTOTYPE',
+    cardCredit:number==='60' ? 'Personal Revit add-in project' : 'Implementation pending',
   })),
   {
     id: 'hoa-project-52', number: '52',
