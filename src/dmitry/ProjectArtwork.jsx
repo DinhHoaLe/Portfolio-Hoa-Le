@@ -3,6 +3,9 @@ import { projects } from '../profile';
 
 // Display regions from the supplied symbol sheet without changing its pixels.
 export const addinSymbols = {
+  'hoa-project-62': {image:'addin-symbol-sheet-v6.png', sheetWidth:1254, x:480, y:45, width:300, height:165},
+  'hoa-project-63': {image:'addin-symbol-sheet-v6.png', sheetWidth:1254, x:135, y:520, width:290, height:160},
+  'hoa-project-64': {image:'addin-symbol-sheet-v6.png', sheetWidth:1254, x:820, y:980, width:310, height:180},
   'hoa-project-59': {image:'addin-symbol-sheet-v5.png', sheetWidth:1254, x:120, y:960, width:320, height:210},
   'hoa-project-60': {image:'addin-symbol-sheet-v5.png', sheetWidth:1254, x:470, y:960, width:320, height:210},
   'hoa-project-52': [62, 60],
@@ -12,7 +15,7 @@ export const addinSymbols = {
   'hoa-project-35': [978, 60],
   'hoa-project-37': [520, 402],
   'hoa-project-38': [978, 402],
-  'hoa-project-39': [62, 744],
+  'hoa-project-39': {image:'bom-export-symbol.png', sheetWidth:1536, x:140, y:120, width:1300, height:760},
   'hoa-project-40': [520, 744],
   'hoa-project-41': [978, 744],
 };

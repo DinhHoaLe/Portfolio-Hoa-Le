@@ -237,22 +237,22 @@
   .dp-selected-media > .dp-addin-symbol { max-width:360px; }
   .dp-selected-card .dp-project-caption { padding:20px 22px; }
 }
-.dp-featured-projects { margin:28px 0 88px; padding:40px; background:#faf8f5; color:#202730; border-radius:20px; }
+.dp-featured-projects { margin:28px 0 64px; padding:28px; background:#faf8f5; color:#202730; border-radius:20px; }
 .dp-featured-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:32px; }
 .dp-featured-heading .dp-eyebrow { color:#5d6c7b; font-size:10px; letter-spacing:.14em; margin-bottom:14px; }
 .dp-featured-heading h3 { font-size:clamp(30px,3.2vw,48px); font-weight:500; letter-spacing:-.045em; line-height:1.15; }
 .dp-featured-heading h3 > span { color:#8290a0; }
 .dp-featured-heading > p { color:#626d78; font-size:13px; line-height:1.7; }
-.dp-featured-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.dp-featured-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
 .dp-featured-card { display:flex; flex-direction:column; min-width:0; border:1px solid #d9d9d5; border-radius:14px; overflow:hidden; background:#faf8f5; transition:transform .25s ease,border-color .25s ease; }
 .dp-featured-card:hover, .dp-featured-card:focus-visible { transform:scale(.98); border-color:#2868b0; }
-.dp-featured-topline { display:flex; justify-content:space-between; align-items:center; padding:18px 20px; font:10px/1.5 'JetBrains Mono',monospace; color:#52677d; }
+.dp-featured-topline { display:flex; justify-content:space-between; align-items:center; padding:12px 14px; font:10px/1.5 'JetBrains Mono',monospace; color:#52677d; }
 .dp-featured-topline > span:last-child { font-size:21px; }
-.dp-featured-art { display:flex; align-items:center; justify-content:center; height:195px; overflow:hidden; padding:12px 18px; }
+.dp-featured-art { display:flex; align-items:center; justify-content:center; height:140px; overflow:hidden; padding:10px 12px; }
 .dp-featured-art > .dp-addin-symbol, .dp-featured-art > .dp-web-logo { width:100%; height:100%; background:#faf8f5 !important; border-radius:0; }
-.dp-featured-copy { display:flex; flex:1; flex-direction:column; padding:24px 22px; border-top:1px solid #e0dfdb; }
+.dp-featured-copy { display:flex; flex:1; flex-direction:column; padding:18px 16px; border-top:1px solid #e0dfdb; }
 .dp-featured-focus { font:9px/1.7 'JetBrains Mono',monospace; color:#2868b0; letter-spacing:.04em; }
-.dp-featured-copy h4 { font-size:25px; font-weight:500; line-height:1.25; letter-spacing:-.03em; margin:12px 0 16px; }
+.dp-featured-copy h4 { font-size:21px; font-weight:500; line-height:1.25; letter-spacing:-.03em; margin:12px 0 16px; }
 .dp-featured-copy > p:not(.dp-featured-focus) { font-size:13px; line-height:1.75; color:#53606e; margin-bottom:18px; }
 .dp-featured-copy > p.dp-featured-angle { padding-top:18px; border-top:1px solid #e0dfdb; font-size:12px; }
 .dp-featured-cta { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-top:auto; padding-top:14px; color:#1d4f87; font-size:12px; font-weight:600; }
@@ -262,7 +262,7 @@
 .dp-featured-ai-flow small { width:100%; text-align:center; margin-top:12px; font:9px 'JetBrains Mono',monospace; color:#66798d; }
 .dp-featured-browse { display:block; width:fit-content; margin:28px auto 0; font-size:12px; color:#285a91; border-bottom:1px solid #b9c9da; padding-bottom:6px; }
 #project-directory { scroll-margin-top:130px; }
-@media(max-width:1050px) { .dp-featured-projects { padding:26px; } .dp-featured-grid { gap:14px; } .dp-featured-copy { padding:20px 16px; } .dp-featured-copy h4 { font-size:22px; } .dp-featured-art { height:160px; padding-inline:10px; } }
+@media(max-width:1050px) { .dp-featured-projects { padding:26px; } .dp-featured-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; } .dp-featured-copy { padding:20px 16px; } .dp-featured-copy h4 { font-size:22px; } .dp-featured-art { height:160px; padding-inline:10px; } }
 @media(max-width:760px) { .dp-featured-projects { padding:24px 18px; margin-bottom:56px; border-radius:14px; } .dp-featured-heading { display:block; } .dp-featured-heading > p { margin-top:18px; } .dp-featured-grid { grid-template-columns:1fr; gap:22px; } .dp-featured-art { height:190px; } .dp-featured-copy { padding:24px; } .dp-featured-copy h4 { font-size:26px; } }
 @media(prefers-reduced-motion:reduce) { .dp-featured-card { transition:none; } .dp-featured-card:hover,.dp-featured-card:focus-visible { transform:none; } }
 .dp-featured-card, .dp-featured-card:hover, .dp-featured-card:focus-visible { text-decoration:none; }
@@ -315,3 +315,17 @@
 .dp-walkthrough-steps p { font-size:14px; line-height:1.8; margin:0; }
 .dp-walkthrough > p.dp-walkthrough-value { margin-top:24px; color:var(--dp-text); }
 @media(max-width:760px) { .dp-walkthrough-steps { grid-template-columns:1fr; } .dp-walkthrough-steps > article { padding:22px; } }
+
+/* Engineering case studies: readable architecture and review steps. */
+.dp-case-study h3 { font-size:18px; font-weight:500; line-height:1.45; margin:0 0 12px; color:var(--dp-fg); }
+.dp-case-architecture { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; list-style:none; margin:30px 0 0; padding:0; }
+.dp-case-architecture > li { position:relative; min-width:0; padding:22px; border:1px solid var(--dp-line); border-radius:10px; }
+.dp-case-number { display:block; font:11px 'JetBrains Mono',monospace; color:var(--dp-muted); margin-bottom:22px; }
+.dp-case-architecture > li:not(:last-child)::after { content:'→'; position:absolute; right:-15px; top:24px; color:var(--dp-muted); }
+.dp-case-study .dp-case-architecture p,.dp-case-study .dp-walkthrough-steps p { font-size:14px; line-height:1.8; margin:0; }
+.dp-case-study .dp-walkthrough-steps > article > span { margin-bottom:22px; }
+.dp-role-responsibility-group + .dp-role-responsibility-group { margin-top:38px; }
+.dp-role-responsibility-group > h3 { font-size:22px; font-weight:400; margin:0 0 20px; }
+@media(max-width:1000px) { .dp-case-architecture { grid-template-columns:repeat(2,minmax(0,1fr)); } .dp-case-architecture > li::after { display:none; } }
+@media(max-width:760px) { .dp-case-architecture { grid-template-columns:1fr; } }
+

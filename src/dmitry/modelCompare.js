@@ -1,0 +1,37 @@
+export const modelCompareProject = {
+  title:'BIM Tool — Model Compare',
+  description:'A planned Revit add-in for comparing a saved model snapshot with a later revision, locating added, removed, and modified elements, and reporting before/after values for engineering review.',
+  customer:'Personal concept — implementation not started',
+  role:'Concept & Implementation Planning',
+  tools:['C#','.NET Framework 4.8','Revit API','WPF','JSON','CSV'],
+  scopeNote:'Concept only: no implementation, build, or runtime validation yet. The proposed first release targets Revit 2023 on Windows x64 and compares selected host-model data within the same model lineage. Capabilities below are planned.',
+  sections:[], links:[],
+  toolContent:[
+    {title:'Engineering Problem',paragraphs:['A revised BIM model can contain new elements, removed elements, moved routes, changed sizes, or edited engineering parameters. Reviewers need to locate those differences and trace each finding to the compared revisions.']},
+    {title:'Proposed First Release',items:[
+      'Capture a versioned JSON baseline from an explicit host-model scope; start with Pipes, Ducts, and Mechanical Equipment.',
+      'Compare the baseline against the current revision using element UniqueIds only after verifying that both snapshots belong to the intended model lineage and compatible scope.',
+      'Classify Added, Removed, Modified, and Unchanged. Record before/after type, level, selected engineering parameters, and supported location/route descriptors.',
+      'Separate movement, size/type changes, and selected parameter edits; allow configurable numeric tolerances so formatting or small floating-point differences do not become changes.',
+      'Provide a WPF change list with category and change-type filters, before/after values, and navigation to current elements.',
+      'Locate removed elements by their recorded baseline position/bounds; label this as historical context, not an existing selectable element.',
+      'Export a CSV change report with baseline/revision identities, scope, comparison settings, and stable element references.',
+    ]},
+    {title:'Proposed Architecture',paragraphs:['A Revit snapshot adapter reads scoped elements into versioned data contracts. A pure comparison engine matches identities and classifies field changes using typed values and tolerances. A WPF review layer presents differences and requests supported Revit navigation through ExternalEvent. Reports retain source identity and comparison settings. The initial comparison does not modify model elements.']},
+    {title:'Planned Workflow',paragraphs:['Choose host scope → Save baseline JSON → Revise a copy from the same model lineage → Load the baseline → Confirm identity, scope, and tolerances → Compare → Inspect added/removed/modified findings → Locate supported results → Export CSV.']},
+    {title:'Validation Plan',items:[
+      'Create a disposable model with a known inventory. Capture a baseline, then add one element, delete one, move a pipe, change a duct size, change an equipment type, and edit a selected parameter.',
+      'Verify exact expected IDs and before/after values. Re-run unchanged snapshots and changes below the configured tolerance; expect no spurious modifications.',
+      'Test missing parameters, changed scope, different units, unsupported geometry, incompatible schema versions, and unrelated model identities. Block incompatible comparisons rather than reporting mass deletions.',
+      'Test deleted and recreated elements as Removed plus Added unless a later explicit identity-reconciliation workflow is implemented.',
+      'Verify that comparison leaves model elements unchanged. Test current-element navigation separately inside Revit; no runtime results are claimed yet.',
+    ]},
+    {title:'Boundaries & Later Phases',items:[
+      'The first release detects changes in captured fields and supported route/location descriptors; it is not a complete solid/mesh geometry-difference engine.',
+      'UniqueId matching is intended for the same model lineage. ElementId or filename alone must not be used to match unrelated models.',
+      'Baseline and revision must use compatible scopes. Current-view visibility changes must not be mistaken for element deletion.',
+      'Loaded/nested links, cross-model matching, fabricated parts, automatic change approval, model merging, and automatic corrections are outside the first release.',
+      'Later phases may add linked-model revision tracking, richer geometry signatures, temporary review colors with restoration, baseline ghost geometry, and a web change dashboard.',
+    ]},
+  ],
+};

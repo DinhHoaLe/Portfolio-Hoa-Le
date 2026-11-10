@@ -4,8 +4,8 @@ export const profile = {
   name: 'Le Dinh Hoa', firstName: 'Le Dinh', lastName: 'Hoa',
   role: 'BIM Automation Engineer', subtitle: 'MEP Modeler · Full-stack Development · MEP Engineering',
   location: 'Ho Chi Minh City, Vietnam', email: 'dinhhoa.0701@gmail.com', phone: '0985 671 678',
-  portrait: '/profile/edited/portrait-professional.png', resume: '/profile/Hoa-Dinh-Le-SD.docx',
-  github: 'https://github.com/DinhHoaLe', gitlab: 'https://gitlab.com/dinhhoa.0701',
+  portrait: '/profile/edited/portrait-professional.png', resume: '/profile/Hoa-Dinh-Le-CV.docx',
+  github: 'https://github.com/DinhHoaLe', gitlab: 'https://gitlab.com/dinhhoa.0701', linkedin: 'https://www.linkedin.com/in/dinh-hoa-le-7a4352396', youtube: 'https://www.youtube.com/@RyanLee-z1p',
   intro: 'Revit add-ins, BIM automation, and full-stack applications — built on practical MEP engineering experience.',
   summary: 'My goal is to grow as a BIM Automation and AI Engineer, building intelligent tools that connect engineering knowledge, Revit, and web-based platforms. Drawing on my MEP engineering and software development experience, I aim to advance my work in Revit API development, MCP integration, and AI-assisted BIM workflows. I want to turn repetitive modeling, model validation, and engineering data analysis into practical, reliable solutions that improve design accuracy, coordination, and productivity across the building lifecycle.',
 };
@@ -137,6 +137,21 @@ const oxiNoteIndex = projects.findIndex(project=>project.id==='hoa-project-10');
 const [oxiNote] = projects.splice(oxiNoteIndex,1);
 projects.splice(projects.findIndex(project=>project.id==='hoa-project-8'),0,oxiNote);
 projects.splice(0,0,...[
+  ...['62','63'].map(number=>({
+    ...projectDetails[`hoa-project-${number}`],
+    id:`hoa-project-${number}`, number, category:'BIM Automation',
+    context:'Personal Revit add-in project', projectType:'Personal',
+    textCard:false, image:'/profile/edited/addin-symbol-sheet-v6.png', stats:'BIM Automation',
+    cardCategory:number==='62' ? 'REVIT WORKSPACE' : 'MEP ROUTING / 3D',
+    cardFooter:number==='62' ? 'VIEW SEARCH & PREVIEW' : 'AXIS-BASED PIPE ROUTING',
+    cardCredit:'Personal Revit add-in project',
+  })),
+  {
+    ...projectDetails['hoa-project-64'],
+    id:'hoa-project-64', number:'64', category:'BIM Automation',
+    context:'Personal concept — implementation not started', projectType:'Prototype',
+    textCard:false, image:'/profile/edited/addin-symbol-sheet-v6.png', stats:'BIM Automation',
+  },
   ...['54','55','56','57','58','61'].map(number=>({
     ...projectDetails[`hoa-project-${number}`],
     id:`hoa-project-${number}`, number, category:'Revit & AI',
@@ -227,20 +242,8 @@ projects.splice(0,0,...[
     "stats": "BIM Automation"
   },
   {
-    "id": "hoa-project-39",
-    "number": "39",
-    "title": "MEP Tool — Export Data from Family",
-    "description": "Export data from Revit families.",
-    "folderName": "MEP_Export_Data_From_Family_ver1",
-    "tools": [
-      "C#",
-      ".NET",
-      "Revit API"
-    ],
-    "category": "BIM Automation",
-    "context": "MEP tool collection",
-    "image": "/profile/project-39.svg",
-    "stats": "BIM Automation"
+    ...projectDetails['hoa-project-39'],
+    id:'hoa-project-39', number:'39', category:'BIM Automation', stats:'BIM Automation',
   },
   {
     "id": "hoa-project-40",
@@ -314,7 +317,7 @@ for (const project of projects.filter(item=>item.projectType === 'Training' && i
 }
 export const links = [
   ['phone','tel:+84985671678',profile.phone],['email',`mailto:${profile.email}`,profile.email],
-  ['GitHub',profile.github,'↗'],['GitLab',profile.gitlab,'↗'],['CV',profile.resume,'↓'],
+  ['LinkedIn',profile.linkedin,'↗'],['YouTube',profile.youtube,'↗'],['GitHub',profile.github,'↗'],['GitLab',profile.gitlab,'↗'],['CV',profile.resume,'↓'],
   ['Degree links','https://drive.google.com/drive/folders/10YL_ca2pBL43DaBqdEhgId2y6TGqs4BL?usp=drive_link','↗'],
   ['Award links','https://drive.google.com/drive/folders/1HOiVhryy_7RbgAgRFD5ik5Xpzh2ieN5f?usp=sharing','↗'],
   ['MindX Certificate','https://drive.google.com/file/d/1B1BLEvy26fcFZYF69W1uCthfV25ivkVQ/view?usp=drive_link','↗'],

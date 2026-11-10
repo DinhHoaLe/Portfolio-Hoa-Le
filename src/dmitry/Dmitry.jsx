@@ -18,7 +18,23 @@ function Heading({ title, label, action }) {
 }
 
 const projectGroupNames = ['MEP Model Projects', 'AutoCAD Plant 3D / Point Cloud Projects', 'Revit Add-ins / Automation', 'Web & Applications', 'Revit & AI'];
-const selectedGroups = groups.map(([name,items],index)=>({name,items,index})).filter(({name})=>name!=='Point Cloud / AutoCAD Plant 3D');
+
+function prioritizeProjects(items, preferred, last = []) {
+  const rank = id => preferred.includes(id) ? preferred.indexOf(id) : last.includes(id) ? preferred.length + items.length + last.indexOf(id) : preferred.length;
+  return [...items].sort((a,b)=>rank(a[2])-rank(b[2]));
+}
+
+export const directoryGroups = [2,3,4,0,1].map(index=>{
+  const [name,projects] = groups[index];
+  let items = projects.filter(project=>project[6]!=='Training');
+  if (name==='BIM Automation') items = prioritizeProjects(items,['hoa-project-39','hoa-project-52','hoa-project-37','hoa-project-38'],['hoa-project-34','hoa-project-59','hoa-project-64']);
+  if (name==='Web Development') items = prioritizeProjects(items,['hoa-project-9','hoa-project-8','hoa-project-10']);
+  return [name,items,projectGroupNames[index],index];
+});
+directoryGroups.push(['MEP Calculation',groups.flatMap(([,items])=>items.filter(project=>project[6]==='Training')),'MEP Calculation Projects',null]);
+export const selectedGroups = directoryGroups
+  .filter(([, , , index])=>index!==null && index!==1)
+  .map(([name,items,,index])=>({name,items,index}));
 
 function projectSections(items, index) {
   return groups[index][0] === 'Revit Projects'
@@ -37,14 +53,12 @@ function SelectedProjects({items,index}) {
   </PortfolioLink>);
 }
 export function AllProjects() {
-  const training = groups.flatMap(([,items])=>items.filter(project=>project[6]==='Training'));
-  const directoryGroups = [...groups.map(([name,items],i)=>[name,items.filter(project=>project[6]!=='Training'),projectGroupNames[i]]), ['MEP Calculation',training,'MEP Calculation Projects']];
   return <div className="dp-project-directory">
     <nav className="dp-project-group-links" aria-label="All project categories">{directoryGroups.map(([,items,title],i)=><PortfolioLink key={title} href={`#all-group-${i}`}>{title} <span>{items.length}</span></PortfolioLink>)}</nav>
-    {directoryGroups.map(([name,items,label],i)=><section className="dp-project-group" id={`all-group-${i}`} aria-labelledby={`dp-all-heading-${i}`} key={name}>
+    {directoryGroups.map(([name,items,label,groupIndex],i)=><section className="dp-project-group" id={`all-group-${i}`} aria-labelledby={`dp-all-heading-${i}`} key={name}>
       <div className="dp-project-group-heading"><h3 id={`dp-all-heading-${i}`}><span>0{i+1}</span>{label}</h3><p>{items.length} projects</p></div>
       {name==='Revit & AI' && <p className="dp-project-group-description">Personal projects for AI-assisted BIM workflows</p>}
-      {(name==='MEP Calculation' ? [[null,items]] : projectSections(items,i)).map(([title,projects])=><div className="dp-project-subgroup" key={title || name}>
+      {(name==='MEP Calculation' ? [[null,items]] : projectSections(items,groupIndex)).map(([title,projects])=><div className="dp-project-subgroup" key={title || name}>
         {title && <h4 className="dp-project-subheading">{title} <span>{projects.length} projects</span></h4>}
         <div className="dp-all-projects">{projects.map(project=><PortfolioLink className="dp-grid-project" key={project[2]} href={`/projects/${project[2]}`}><ProjectArtwork projectId={project[2]} src={project[3]} alt={project[0]}/><h4>{project[0]}</h4><p>{project[1]}</p></PortfolioLink>)}</div>
       </div>)}
@@ -55,7 +69,7 @@ export function AllProjects() {
 export default function Dmitry() {
   const [menu,setMenu] = useState(false);
   const [service,setService] = useState(0);
-  const [group,setGroup] = useState(0);
+  const [group,setGroup] = useState(selectedGroups[0].index);
   const allProjects = new URLSearchParams(window.location.search).get('projects') === 'all';
   const [formStatus,setFormStatus] = useState('');
   const [pastHero,setPastHero] = useState(false);
@@ -77,9 +91,9 @@ export default function Dmitry() {
       <section className="dp-section" id="experience"><Heading title="Professional Experience" label="Experience"/><div className="dp-timeline dp-alternating">{roles.map(role=><article key={role.id}><div className="dp-timeline-card"><h3>{role.website ? <PortfolioLink className="dp-company-website" href={role.website} target="_blank" rel="noreferrer">{role.company} ↗</PortfolioLink> : role.company}</h3><p className="dp-timeline-role">{role.title}</p><time>{role.date}</time><p>{role.summary}</p><PortfolioLink className="dp-role-more" href={`/experience/${role.id}`}>More about this role +</PortfolioLink></div></article>)}</div></section>
       <section className="dp-section" id="education"><Heading title="Education & Training" label="Education"/><div className="dp-timeline dp-alternating dp-education-timeline">{education.filter(([,title])=>title!=='Certifications & Honors').sort((a,b)=>Number(b[0].slice(0,4))-Number(a[0].slice(0,4))).map(([date,title,org])=><article key={org}><div className="dp-timeline-card"><h3>{org}</h3><p className="dp-timeline-role">{title}</p><time>{date}</time></div></article>)}</div><PortfolioLink className="dp-text-link" href={links.find(([name])=>name==='Degree links')[1]} target="_blank" rel="noreferrer">View degree documents ↗</PortfolioLink></section>
       <section className="dp-section" id="dp-principles"><Heading title="How I Work" label="Engineering Focus"/><div className="dp-values">{values.map(([name,desc],i)=><details key={name}><summary><span>0{i+1}</span><h3>{name}</h3><b>+</b></summary><p>{desc}</p></details>)}</div></section>
-      <section className="dp-section" id="technologies"><Heading title="Tools & Technologies" label="Tools & Technologies"/><p className="dp-tools-intro">My core stack for Revit automation, MEP coordination, and web development.</p><TechnologyGroups groups={toolGroups}/><details className="dp-supporting-tools"><summary>Supporting tools &amp; standards <span aria-hidden="true">+</span></summary><TechnologyGroups groups={supportingToolGroups}/></details></section>
+      <section className="dp-section" id="technologies"><Heading title="Tools & Technologies" label="Tools & Technologies"/><p className="dp-tools-intro">My core stack for Revit automation, web development, and BIM/MEP coordination.</p><TechnologyGroups groups={toolGroups}/><details className="dp-supporting-tools"><summary>Supporting tools &amp; standards <span aria-hidden="true">+</span></summary><TechnologyGroups groups={supportingToolGroups}/></details></section>
 
-      <section className="dp-section" id="contacts"><Heading title="Get In Touch" label="Contact"/><div className="dp-contact-grid"><div className="dp-contact-info"><p>Let’s discuss Revit automation, BIM workflows, or your next application.</p><PortfolioLink className="dp-contact-mail" href={`mailto:${profile.email}`}>{profile.email}</PortfolioLink><PortfolioLink className="dp-contact-phone" href="tel:+84985671678">{profile.phone}</PortfolioLink><div className="dp-contact-socials">{links.filter(([name])=>['GitHub','GitLab','CV'].includes(name)).map(([name,url])=><PortfolioLink href={url} key={name} target={name==='CV' ? undefined : '_blank'} rel="noreferrer" download={name==='CV'}>{name==='CV' ? 'Download CV ↓' : name+' ↗'}</PortfolioLink>)}</div></div><form onSubmit={e=>{e.preventDefault();const data=new FormData(e.currentTarget);const body="Name: "+data.get("name")+"\nEmail: "+data.get("email")+"\n\n"+data.get("message");window.location.href=`mailto:${profile.email}?subject=${encodeURIComponent(data.get("subject"))}&body=${encodeURIComponent(body)}`;setFormStatus("Email draft requested. Send it from your email app.");}}><div className="dp-form-row"><label className="dp-sr" htmlFor="dp-name">Your Name</label><input id="dp-name" name="name" autoComplete="name" required placeholder="Your Name"/><label className="dp-sr" htmlFor="dp-email">Your Email</label><input id="dp-email" name="email" type="email" autoComplete="email" required placeholder="Your Email"/></div><label className="dp-sr" htmlFor="dp-subject">Subject</label><input id="dp-subject" name="subject" required placeholder="Subject"/><label className="dp-sr" htmlFor="dp-message">Your Message</label><textarea id="dp-message" name="message" required placeholder="Your Message"/><button className="dp-send">Open Email Draft ⟶</button><p className="dp-form-status" role="status">{formStatus}</p></form></div><div className="dp-contact-references"><h3>Company Links</h3><div>{references.map(([name,url],i)=><PortfolioLink key={name} href={url} target="_blank" rel="noreferrer"><span>0{i+1}</span><b>{name}</b><span>↗</span></PortfolioLink>)}</div></div></section>
+      <section className="dp-section" id="contacts"><Heading title="Get In Touch" label="Contact"/><div className="dp-contact-grid"><div className="dp-contact-info"><p>Let’s discuss Revit automation, BIM workflows, or your next application.</p><PortfolioLink className="dp-contact-mail" href={`mailto:${profile.email}`}>{profile.email}</PortfolioLink><PortfolioLink className="dp-contact-phone" href="tel:+84985671678">{profile.phone}</PortfolioLink><div className="dp-contact-socials">{links.filter(([name])=>['LinkedIn','YouTube','GitHub','GitLab','CV'].includes(name)).map(([name,url])=><PortfolioLink href={url} key={name} target={name==='CV' ? undefined : '_blank'} rel="noreferrer" download={name==='CV'}>{name==='CV' ? 'Download CV ↓' : name+' ↗'}</PortfolioLink>)}</div></div><form onSubmit={e=>{e.preventDefault();const data=new FormData(e.currentTarget);const body="Name: "+data.get("name")+"\nEmail: "+data.get("email")+"\n\n"+data.get("message");window.location.href=`mailto:${profile.email}?subject=${encodeURIComponent(data.get("subject"))}&body=${encodeURIComponent(body)}`;setFormStatus("Email draft requested. Send it from your email app.");}}><div className="dp-form-row"><label className="dp-sr" htmlFor="dp-name">Your Name</label><input id="dp-name" name="name" autoComplete="name" required placeholder="Your Name"/><label className="dp-sr" htmlFor="dp-email">Your Email</label><input id="dp-email" name="email" type="email" autoComplete="email" required placeholder="Your Email"/></div><label className="dp-sr" htmlFor="dp-subject">Subject</label><input id="dp-subject" name="subject" required placeholder="Subject"/><label className="dp-sr" htmlFor="dp-message">Your Message</label><textarea id="dp-message" name="message" required placeholder="Your Message"/><button className="dp-send">Open Email Draft ⟶</button><p className="dp-form-status" role="status">{formStatus}</p></form></div><div className="dp-contact-references"><h3>Company Links</h3><div>{references.map(([name,url],i)=><PortfolioLink key={name} href={url} target="_blank" rel="noreferrer"><span>0{i+1}</span><b>{name}</b><span>↗</span></PortfolioLink>)}</div></div></section>
     </main>
 
   </div>;

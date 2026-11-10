@@ -11,10 +11,10 @@ export const services = [
   ['Full-Stack Web','Build responsive interfaces and RESTful APIs with React, Node.js, Express.js, and MongoDB.','Experience includes routing, state management, API integration, JWT authentication, authorization, validation, and CRUD operations. OxiNote adds React Native, Markdown editing, JSON-based local storage, and offline file linking.',['REACT','REACT NATIVE','NODE.JS','TYPESCRIPT','MONGODB']],
 ];
 export const values = [
-  ['Reduce repetitive work','Build Revit add-ins and automation tools for repetitive modeling tasks, sheet creation, family placement, and parameter management.'],
-  ['Standardize workflows','Translate BIM/MEP production requirements into practical software and maintain consistent model parameters, geometry, and documentation.'],
-  ['Improve model quality','Review model performance and data quality, identify clashes, and coordinate changes across architecture, structure, and MEP disciplines.'],
-  ['Reliable application development','Debug, maintain, and document code. Use version control, code reviews, request validation, authentication, and stable local data references.'],
+  ['Understand the engineering problem','Start with the real engineering workflow: understand repetitive tasks, input data, constraints, and the expected output before deciding what to build.'],
+  ['Build practical automation','Translate engineering requirements into Revit add-ins and automated workflows that reduce repeated modeling, documentation, and data-management tasks.'],
+  ['Connect models, data & web','Connect BIM and engineering data with web interfaces for visualization, management, and analysis, making model information easier to review and use.'],
+  ['Validate & improve','Check results against the original requirements, investigate errors, and refine the workflow through testing and user feedback. Keep changes documented and under version control.'],
 ];
 const icons = {'Revit':'autodesk-revit','AutoCAD':'autocad','Navisworks':'navisworks','BIMcollab':'bimcollab','Python':'python','C#':'csharp','.NET':'dotnet','React':'react','Next.js':'next-js','JavaScript':'javascript','Git':'git','GitHub':'github','VS Code':'vscode','Visual Studio':'visual-studio','Excel':'microsoft-excel','Node.js':'nodejs','TypeScript':'typescript','MongoDB':'mongodb','PostgreSQL':'postgresql','GitLab':'gitlab','Dynamo':'dynamobim','ACC':'acc','AutoCAD Plant 3D':'plant3d-user','Revizto':'revizto-user','ChatGPT':'chatgpt-user','Gemini':'gemini-user','GitHub Copilot':'copilot-user'};
 Object.assign(icons, {'Revit API':'revit-api', 'Word':'microsoft-word', 'PowerPoint':'microsoft-powerpoint', 'Power BI':'power-bi', 'Codex':'codex', 'Stitch':'stitch.png', 'Tailwind CSS':'tailwind-css', 'Three.js':'three-js', 'Render':'render', 'Vercel':'vercel', 'Netlify':'netlify'});
@@ -22,8 +22,8 @@ const toolsFor = name => skills.find(([group]) => group === name)?.[1] || [];
 const withIcons = labels => [...new Set(labels)].map(label => [label, icons[label] || null]);
 export const toolGroups = [
   ['Revit Automation', withIcons(['C#','.NET','Revit API','WPF','Python'])],
-  ['BIM / MEP', withIcons(['Revit','AutoCAD','Navisworks','Revizto','BIMcollab'])],
-  ['Web / Data', withIcons(['React','Node.js','TypeScript','JavaScript','MongoDB','PostgreSQL'])],
+  ['Web & Data', withIcons(['React','TypeScript','Node.js','JavaScript','MongoDB','PostgreSQL'])],
+  ['BIM & MEP', withIcons(['Revit','AutoCAD','Navisworks','Revizto','BIMcollab'])],
 ];
 export const supportingToolGroups = [
   ['Revit Utilities', withIcons(['Dynamo','Add-ins Manager'])],

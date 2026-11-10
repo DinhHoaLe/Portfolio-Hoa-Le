@@ -1,3 +1,6 @@
+import { bomExportProject } from './bomExport';
+import { workspaceRoutingTools } from './workspaceRoutingTools';
+import { modelCompareProject } from './modelCompare';
 import { toolDescriptions } from './toolDescriptions';
 import { revitMcpCaseStudies } from './revitMcpScenarios';
 import { plannedAddins } from './plannedAddins';
@@ -12,6 +15,8 @@ const webResponsibilities = [
 const personal = { customer:'Personal', period:'2025', role:'Developer', team:'1 developer' };
 const fullstack = { role:'Full-Stack Developer', team:'3 members' };
 export const projectDetails = {
+  'hoa-project-64': modelCompareProject,
+  ...workspaceRoutingTools,
   ...plannedAddins,
   ...revitMcpCaseStudies,
   'hoa-project-52': {
@@ -78,20 +83,7 @@ export const projectDetails = {
   "sections": [],
   "links": []
 },
-  'hoa-project-39': {
-  "title": "MEP Tool — Export Data from Family",
-  "description": "Export data from Revit families.",
-  "customer": "MEP tool collection",
-  "role": "Revit Add-in Developer",
-  "tools": [
-    "C#",
-    ".NET",
-    "Revit API"
-  ],
-  "scopeNote": "Project folder: MEP_Export_Data_From_Family_ver1",
-  "sections": [],
-  "links": []
-},
+  'hoa-project-39': {...bomExportProject},
   'hoa-project-40': {
   "title": "MEP Tool — Place Element from CAD",
   "description": "Place Revit elements from CAD input.",
@@ -167,14 +159,14 @@ export const projectDetails = {
   },
   'hoa-project-8': {
     ...fullstack, title:'BuildSense — GIS & Real-Time Sensor Monitoring', period:'Jan 2026 — Present', customer:'BuildSense',
-    description:'A GIS-based platform for real-time sensor monitoring and data acquisition across factory sites.',
+    description:'An industrial sensor-monitoring application that connects factory-site device locations with temperature, humidity, device status, and changing measurement data through GIS dashboards and a sensor-data pipeline.',
     tools:['ArcGIS API', 'React', 'Node.js', 'TypeScript', 'WebSockets', 'PostgreSQL / PostGIS', 'Git'],
     sections:[['Frontend', ['Integrate ArcGIS Maps SDK to visualize spatial sensor data and 3D building models.', 'Build React dashboards displaying live temperature, humidity, and device status through WebSockets.']], ['Backend', ['Design a pipeline to collect and process high-frequency IoT sensor data.', 'Design database schemas for geospatial coordinates and historical time-series data.', 'Implement authentication and role-based access control for sensor configuration and site access.']]],
     links:[['Frontend repository',github('BuildSense-FE')], ['Live platform','https://buildsense-v7kn.onrender.com/map']],
   },
   'hoa-project-9': {
     ...fullstack, title:'Digital Twin & Smart Infrastructure Platform', period:'Jan 2026 — Present', customer:'Digital Twin & Smart Infrastructure Platform',
-    description:'An airport digital twin platform connecting GIS, BIM, and IoT data, with multi-airport navigation, sensor monitoring, and live operational views.',
+    description:'An airport digital twin centered on multi-airport BIM/GIS navigation, selectable building components and spatial assets, with engineering attributes and sensor or operational information shown in their 3D context.',
     previewImage:'/profile/edited/aerotwin-long-thanh-sensors.png',
     previewGallery:[
       {image:'/profile/edited/aerotwin-long-thanh-sensors.png', caption:'Long Thanh International Airport (VVLT) — indoor sensor monitoring, crowd density, and live trend analysis.'},
@@ -328,6 +320,25 @@ export const projectDetails = {
 
 for (const [id, description] of Object.entries(toolDescriptions)) {
   projectDetails[id] = {...projectDetails[id], ...description, period:undefined, team:undefined};
+}
+
+const demoVideos = {
+  'hoa-project-52': 'https://youtu.be/IPNv1IuT6bM',
+  'hoa-project-38': 'https://youtu.be/abYrLUHyjoY',
+  'hoa-project-60': 'https://youtu.be/NV70gkItD_o',
+  'hoa-project-35': 'https://youtu.be/ImqpgPW1IQA',
+  'hoa-project-63': 'https://youtu.be/ITm7C4bH3js',
+  'hoa-project-39': 'https://youtu.be/MoS26hFg6-M',
+  'hoa-project-62': 'https://youtu.be/6sT0L3-ADKk',
+  'hoa-project-2': 'https://youtu.be/3Z8pktasDbI',
+  'hoa-project-6': 'https://youtu.be/8xgBQOW84j0',
+};
+
+for (const [id, url] of Object.entries(demoVideos)) {
+  projectDetails[id].links = [
+    ['Watch demo on YouTube', url],
+    ...(projectDetails[id].links || []),
+  ];
 }
 
 export function getProjectDetail(project) {

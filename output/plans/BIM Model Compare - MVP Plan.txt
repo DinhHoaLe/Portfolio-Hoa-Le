@@ -1,0 +1,64 @@
+BIM MODEL COMPARE — IMPLEMENTATION PLAN
+Status: concept only; not implemented or tested.
+Proposed first target: Revit 2023 / .NET Framework 4.8 / WPF / Windows x64.
+
+PURPOSE
+Show what changed between a recorded baseline and a later revision of the same model: Added, Removed, Modified and Unchanged. Explain each finding with before/after values and a location/reference. Compare captured data, not every possible solid/mesh difference.
+
+FIRST WORKING SLICE
+Start with the entire host model restricted to Pipes, Ducts and Mechanical Equipment. Keep the same categories/settings on both sides. Implement snapshot -> comparison -> CSV before building an elaborate interface. No linked models, automatic corrections or merges in this slice.
+
+DATA CONTRACT
+Snapshot: SchemaVersion, SourceModelIdentity, RevisionLabel, CapturedAtUtc, ScopeDefinition, ParameterKeys, UnitConvention, ComparisonSettings, Elements.
+Element: UniqueId, display ElementId, CategoryKey, TypeIdentity, TypeName, LevelIdentity, selected system/size values, supported location or route endpoints, baseline bounds, typed selected parameters, capture warnings.
+Use parameter keys with stable identity (built-in identity or shared GUID where available), not translated UI labels alone. Preserve typed numeric values rather than formatted strings. Store units explicitly.
+
+IDENTITY AND COMPATIBILITY
+Require the intended source-model lineage and compatible schema/scope/settings before matching. Record identity in the snapshot contract and show it for explicit user verification; do not treat filename or ElementId as identity. Match UniqueIds only within the verified lineage. Unrelated models must be rejected or handled by a future explicit reconciliation workflow.
+For missing snapshot entries, distinguish capture failures or scope changes from genuine deletion. If an element still exists in the current host but no longer fits the chosen scope, flag Out of Scope rather than Removed. Do not claim a linked-model or cross-file geometry match in this version.
+
+COMPARISON ENGINE
+1. Validate schema, model lineage, category scope, unit conventions and captured fields.
+2. Index baseline/current data by UniqueId and reject duplicate or corrupt keys.
+3. Only current: Added. Only baseline: check identity, scope and capture warnings before marking Removed.
+4. Both: compare supported fields and collect field-level changes. More than one reason can apply to a single Modified element.
+5. Preserve Unchanged totals for reconciliation. Missing/unreadable values become explicit warnings, not zero values.
+6. A deleted and recreated object is Removed plus Added. No heuristic merge.
+
+PROPOSED CHANGE REASONS
+Location/route change; size change; type change; level change; selected parameter change. For straight route endpoints, compare equivalent endpoint orderings so reversing representation alone is not a false movement.
+Initial tolerance examples for review: position 1 mm, rotation 0.1 degree, size 0.1 mm. These are configurable comparison settings, not universal engineering acceptance criteria. Store the actual settings in every report. Distinguish display rounding from comparison precision.
+
+REVIEW INTERFACE
+Baseline and current revision summaries; category/change filters; searchable result list; before/after values; selected-field change reasons; current-element selection and zoom through ExternalEvent.
+Removed elements have baseline coordinates/bounds only. Label them as historical context; they cannot be selected as current elements. A saved bounding box is not reconstructed original geometry.
+Keep comparison read-only. Temporary colors and baseline ghost geometry belong to a later optional review module with explicit restoration and separately tested API interactions.
+
+REPORT
+CSV: baseline/revision labels, source-model identity, scope/settings, category, UniqueId, baseline/current display IDs, status, change reasons, field key, before value, after value, unit and warnings.
+A simple HTML summary can be a later export. No current GitHub/source-code link until the project exists.
+
+SUGGESTED MODULES
+Contracts: snapshots, element records, typed values, compatibility metadata.
+Revit adapter: scoped capture and current-element navigation.
+Comparison core: identity matching, tolerances and classification; no Revit API dependency.
+Serialization/reporting: versioned JSON and CSV.
+WPF review: input validation, result filters and before/after details.
+
+FIRST DEVELOPMENT SESSION
+A. Create the project and pure comparison contracts.
+B. Implement capture for the three categories and save baseline JSON.
+C. Implement matching, field comparisons and CSV on synthetic snapshots.
+D. Prepare the seeded Revit model and manually reconcile a small known change set.
+E. Add a minimal WPF result grid after core output is trustworthy. Rich visual review can follow later.
+
+ACCEPTANCE DATASET
+Baseline with a known inventory. Then: add an equipment instance; delete a duct; move a pipe; change a diameter; change equipment type; edit a chosen parameter. Expected IDs and before/after values must be written down in advance.
+Also test: no change, tolerance boundaries, null/missing parameters, reversed pipe endpoints, different units, unrelated model identity, changed scope, duplicate UniqueIds in JSON, unsupported descriptors and capture failures.
+Native checks: navigation targets the correct document/element; removed results are not selectable; comparison does not alter model elements. Passing pure tests or building the DLL does not establish native Revit correctness.
+
+LATER PHASES
+Loaded-link revisions with instance transform identities; richer geometry signatures; temporary colors with restoration; approximate historical bounding-box overlays; optional web change dashboard. Complete model merging or automatic engineering approval is outside this product's proposed first release.
+
+DEMO WHEN IMPLEMENTED
+Capture baseline -> show known model edits -> compare -> inspect one Added, one Removed and one Modified item -> show before/after values -> locate a current element -> export and reconcile CSV. Record limitations and actual test results.
